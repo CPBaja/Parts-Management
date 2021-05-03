@@ -1,4 +1,4 @@
-# CP BAJA BOM flask backend
+# CPBaja Parts Management Flask Backend
 
 ## Make a virtual environment
 Create the virtual environment:
@@ -13,7 +13,7 @@ Activate the virtual environment:
 ## Atlas DB Integration
 
 ### MongoDB Compass
-Replace `<password>` with the cpbaja db password in the string below.
+Replace `<password>` with the CPBaja db password in the string below.
 Use the modified connection string to access the db from Compass.
 `mongodb+srv://cpbaja:<password>@cpbajabomdev.m1dza.mongodb.net/test`
 
