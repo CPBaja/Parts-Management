@@ -1,0 +1,7 @@
+# Module requirements for flask backend
+flask
+flask-cors
+# For interfacing with backend and git secrets for db key
+pymongo[srv]
+dnspython
+python-dotenv
