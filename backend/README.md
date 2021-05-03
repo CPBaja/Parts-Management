@@ -21,3 +21,16 @@ Use the modified connection string to access the db from Compass.
 Ask Ian for the required .env file and add it to 'Parts-Management/backend'.
 To test if it works, run the following in the same directory:
 `python3 test_db_url.py`
+
+## Collection Names
+| Subsystem | Collection |
+| --- | --- |
+| Chassis | chs |
+| Powertrain | pwt |
+| Front Suspension | fsp |
+| Rear Suspension | rsp |
+| Steering | str |
+| Brakes | brk |
+| Ergonomics | erg |
+| Composites | cmp |
+| Electronics | elc |
