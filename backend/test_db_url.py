@@ -12,8 +12,9 @@ db = client.bom
 collection = db.test
 
 for i in range(10):
+    print(f"Adding {i}")
     collection.insert_one({"id": i})
 
 for item in collection.find():
-    print(item["id"])
+    print(f"Removing {item['id']}")
     collection.delete_one({"id": item["id"]}) 
