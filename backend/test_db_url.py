@@ -1,15 +1,14 @@
-# A short script verifying that the atlas db .env works
-import dns
-import pymongo
+# Script to test the MongoDB URL in .env
+
 import os
+import pymongo
 from dotenv import load_dotenv
 
 load_dotenv()
 MONGODB_URL = os.environ['MONGODB_URL']
 
 client = pymongo.MongoClient(MONGODB_URL)
-db = client.bom
-collection = db.test
+collection = client.parts.test
 
 for i in range(10):
     print(f"Adding {i}")
