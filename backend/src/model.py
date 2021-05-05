@@ -1,5 +1,12 @@
+import os
 import pymongo
 from bson import ObjectId
+from dotenv import load_dotenv
+
+
+def get_mongo_client():
+    load_dotenv()
+    return pymongo.MongoClient(os.getenv("MONGODB_URL"))
 
 
 class Model(dict):
@@ -11,6 +18,8 @@ class Model(dict):
     __getattr__ = dict.get
     __delattr__ = dict.__delitem__
     __setattr__ = dict.__setitem__
+
+    client = get_mongo_client()
 
     def save(self):
         """
