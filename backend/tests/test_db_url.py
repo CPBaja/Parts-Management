@@ -5,7 +5,7 @@ import pymongo
 from dotenv import load_dotenv
 
 load_dotenv()
-MONGODB_URL = os.environ['MONGODB_URL']
+MONGODB_URL = os.getenv("MONGODB_URL")
 
 client = pymongo.MongoClient(MONGODB_URL)
 collection = client.parts.test
