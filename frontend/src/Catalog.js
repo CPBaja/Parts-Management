@@ -1,12 +1,14 @@
 import React from 'react'
+import Part from './Part'
 
 function Catalog() {
     return (
         <ul class="catalog-list">
-            <li class="catalog-list-item"><div>Part 1</div></li>
-            <li class="catalog-list-item">Part 2</li>
-            <li class="catalog-list-item">Part 3</li>
-            <li class="catalog-list-item">Part 4</li>
+            <Part />
+            <Part />
+            <Part />
+            <Part />
+            <Part />
         </ul>
     );  
 }
