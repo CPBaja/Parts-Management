@@ -1,20 +1,24 @@
+from model import Model
+import priority
+import status
+
 
 class Part(Model):
     """
     An abstract part. Extends Model.
     """
 
-    collection = client.parts.parts
+    collection = Model.client.parts.parts
 
-    def __init__():
+    def __init__(self):
         self.name = ""
         self.subsystem = ""
         self.subassembly = ""
         self.quantity_gonogo = 0
         self.quantity_competition = 0
         self.quantity_available = 0
-        self.ordering_status = ""
-        self.ordering_priority = ""
+        self.ordering_status = status.ToDoStatus()
+        self.ordering_priority = priority.ThisYearPriority()
         self.vendor = ""
         self.vendor_cost = 0
         self.vendor_link = ""
@@ -26,7 +30,7 @@ class PurchasedPart(Part):
     A purchased part. Extends Part.
     """
     def __init__(self):
-        super.__init__()
+        super().__init__()
 
 
 class ManufacturedPart(Part):
@@ -34,10 +38,10 @@ class ManufacturedPart(Part):
     A manufactured part. Extends Part.
     """
     def __init__(self):
-        super.__init__()
+        super().__init__()
         self.stock = ""
-        self.manufacturing_status = ""
-        self.manufacturing_priority = ""
+        self.manufacturing_status = status.ToDoStatus()
+        self.manufacturing_priority = priority.ThisYearPriority()
         self.machines_and_processes = ""
         self.cad_link = ""
         self.dwg_link = ""
