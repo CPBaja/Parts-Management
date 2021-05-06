@@ -10,6 +10,7 @@ class Aluminum(Material):
     """
     An aluminum material. Extends Material.
     """
+
     def __init__(self, alloy):
         self.alloy = alloy
 
@@ -25,5 +26,6 @@ class Steel(Material):
     """
     A steel material. Extends Material.
     """
+
     def __init__(self, alloy):
         self.alloy = alloy

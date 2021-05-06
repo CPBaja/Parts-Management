@@ -31,6 +31,7 @@ class PurchasedPart(Part):
     """
     A purchased part. Extends Part.
     """
+
     def __init__(self):
         super().__init__()
 
@@ -39,6 +40,7 @@ class ManufacturedPart(Part):
     """
     A manufactured part. Extends Part.
     """
+
     def __init__(self):
         super().__init__()
         self.stock = stock.Stock(material.Material(), 0, 0)

@@ -3,6 +3,7 @@ class Stock:
     """
     An abstract stock.
     """
+
     def __init__(self, material, quantity, length):
         self.material = material
         self.quantity = quantity
@@ -13,6 +14,7 @@ class Sheet(Stock):
     """
     A sheet stock. Extends Stock.
     """
+
     def __init__(self, material, quantity, length, width, thickness):
         super().init(material, quantity, length)
         self.width = width
@@ -23,6 +25,7 @@ class Plate(Stock):
     """
     A plate stock. Extends Stock.
     """
+
     def __init__(self, material, quantity, length, width, thickness):
         super().init(material, quantity, length)
         self.width = width
@@ -33,6 +36,7 @@ class BarStock(Stock):
     """
     A bar stock. Extends Stock.
     """
+
     def __init__(self, material, quantity, length, width, height):
         super().init(material, quantity, length)
         self.width = width
@@ -43,6 +47,7 @@ class RoundStock(Stock):
     """
     A round stock. Extends Stock.
     """
+
     def __init__(self, material, quantity, length, diameter):
         super().init(material, quantity, length)
         self.diameter = diameter
@@ -52,6 +57,7 @@ class RectTubeStock(Stock):
     """
     A rectangular tube stock. Extends Stock.
     """
+
     def __init__(self, material, quantity, length,
                  outer_width, outer_height, wall_thickness):
         super().init(material, quantity, length)
@@ -64,6 +70,7 @@ class RoundTubeStock(Stock):
     """
     A round tube stock. Extends Stock.
     """
+
     def __init__(self, material, quantity, length,
                  outer_diameter, wall_thickness):
         super().init(material, quantity, length)
