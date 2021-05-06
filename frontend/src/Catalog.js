@@ -1,16 +1,18 @@
 import React from 'react'
 import Part from './Part'
 
-function Catalog() {
+function Catalog(props) {
+  const parts = props.partsData.map((part) => {
     return (
-        <ul class="catalog-list">
-            <Part />
-            <Part />
-            <Part />
-            <Part />
-            <Part />
-        </ul>
-    );  
+      <Part />
+    )
+  });
+
+  return (
+    <ul class="catalog-list">
+        {parts}
+    </ul>
+  );  
 }
 
 export default Catalog;
