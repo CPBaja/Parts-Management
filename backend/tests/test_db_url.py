@@ -16,4 +16,4 @@ for i in range(10):
 
 for item in collection.find():
     print(f"Removing {item['id']}")
-    collection.delete_one({"id": item["id"]}) 
+    collection.delete_one({"id": item["id"]})
