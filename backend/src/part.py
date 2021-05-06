@@ -1,7 +1,7 @@
 
 class Part(Model):
     """
-    An abstract part that extends Model.
+    An abstract part. Extends Model.
     """
 
     collection = client.parts.parts
@@ -18,3 +18,26 @@ class Part(Model):
         self.vendor = ""
         self.vendor_cost = 0
         self.vendor_link = ""
+        self.notes = ""
+
+
+class PurchasedPart(Part):
+    """
+    A purchased part. Extends Part.
+    """
+    def __init__(self):
+        super.__init__()
+
+
+class ManufacturedPart(Part):
+    """
+    A manufactured part. Extends Part.
+    """
+    def __init__(self):
+        super.__init__()
+        self.stock = ""
+        self.manufacturing_status = ""
+        self.manufacturing_priority = ""
+        self.machines_and_processes = ""
+        self.cad_link = ""
+        self.dwg_link = ""
