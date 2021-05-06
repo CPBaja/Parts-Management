@@ -1,15 +1,14 @@
-import React from 'react'
-import axios from 'axios'
-import Catalog from './Catalog'
+import React from "react";
+import axios from "axios";
+import Catalog from "./Catalog";
 
 function App() {
-
   const [parts, setParts] = useState([]);
 
   async function fetchAll() {
     try {
       // TODO: Route here will probably change
-      const response = await axios.get('http://localhost:5000/all');
+      const response = await axios.get("http://localhost:5000/all");
       return response.parts;
     } catch (error) {
       console.log(error);
@@ -18,11 +17,10 @@ function App() {
   }
 
   useEffect(() => {
-    fetchAll().then( result => {
-      if (result)
-        setParts(result);
+    fetchAll().then((result) => {
+      if (result) setParts(result);
     });
-  }, [] );
+  }, []);
 
   return (
     <div className="container">
