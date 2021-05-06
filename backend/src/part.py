@@ -1,6 +1,8 @@
 from model import Model
+import material
 import priority
 import status
+import stock
 
 
 class Part(Model):
@@ -39,7 +41,7 @@ class ManufacturedPart(Part):
     """
     def __init__(self):
         super().__init__()
-        self.stock = ""
+        self.stock = stock.Stock(material.Material(), 0, 0)
         self.manufacturing_status = status.ToDoStatus()
         self.manufacturing_priority = priority.ThisYearPriority()
         self.machines_and_processes = ""
