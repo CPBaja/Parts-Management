@@ -19,6 +19,7 @@ class Model(dict):
     __delattr__ = dict.__delitem__
     __setattr__ = dict.__setitem__
 
+    # Calls load_dotenv() (file I/O - slow) only once
     client = get_mongo_client()
 
     def save(self):
