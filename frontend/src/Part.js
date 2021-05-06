@@ -25,8 +25,8 @@ function Part() {
                 <div>
                     <legend>Quantity</legend>
                     <br></br>
-                    <label>Go/No Go<input type="number"/></label>
-                    <label>Comp<input type="number"/></label>
+                    <label>Go/NoGo<input type="number"/></label>
+                    <label>Competition<input type="number"/></label>
                     <label>Available<input type="number"/></label>
                     
                 </div>
