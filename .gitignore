@@ -1,1 +1,5 @@
-.vscode
+# Do not include local VSCode files
+.vscode/
+
+# Do not include local IntelliJ files
+.idea/

@@ -1,6 +1,6 @@
 import React from "react";
 
-function Part() {
+function CatalogEntry() {
   return (
     <form>
       <fieldset>
@@ -43,4 +43,4 @@ function Part() {
   );
 }
 
-export default Part;
+export default CatalogEntry;

@@ -1,9 +1,9 @@
 import React from "react";
-import Part from "./Part";
+import CatalogEntry from "./CatalogEntry";
 
 function Catalog(props) {
   const parts = props.partsData.map((part) => {
-    return <Part />;
+    return <CatalogEntry />;
   });
 
   return <ul class="catalog-list">{parts}</ul>;
