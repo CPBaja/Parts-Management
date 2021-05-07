@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Catalog from "./Catalog";
 
@@ -23,12 +23,12 @@ function App() {
   }, []);
 
   // TODO: Need route to parts.subsystems here
-  const subsystems = []
+  const subsystems = [];
 
   return (
     <div className="container">
       <h1>Bill Of Materials</h1>
-      <Catalog partsData={parts} subsystems={subsystems}/>
+      <Catalog partsData={parts} subsystems={subsystems} />
     </div>
   );
 }
