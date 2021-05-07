@@ -22,10 +22,13 @@ function App() {
     });
   }, []);
 
+  // TODO: Need route to parts.subsystems here
+  const subsystems = []
+
   return (
     <div className="container">
       <h1>Bill Of Materials</h1>
-      <Catalog partsData={parts} />
+      <Catalog partsData={parts} subsystems={subsystems}/>
     </div>
   );
 }
