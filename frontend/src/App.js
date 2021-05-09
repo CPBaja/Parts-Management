@@ -5,11 +5,10 @@ import Catalog from "./Catalog";
 function App() {
   const [parts, setParts] = useState([]);
 
-  async function fetchAll() {
+  async function fetchParts() {
     try {
-      // TODO: Route here will probably change
       const response = await axios.get("http://localhost:5000/catalog");
-      return response.parts;
+      return response.data.parts_list;
     } catch (error) {
       console.log(error);
       return false;
@@ -17,7 +16,7 @@ function App() {
   }
 
   useEffect(() => {
-    fetchAll().then((result) => {
+    fetchParts().then((result) => {
       if (result) setParts(result);
     });
   }, []);
