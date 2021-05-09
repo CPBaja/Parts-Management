@@ -3,8 +3,6 @@ import CatalogEntry from "./CatalogEntry";
 
 function Catalog(props) {
   const parts = props.partsData.map((part) => {
-    console.log(props.subsystems);
-    console.log(part.subsystem);
     return (
       <CatalogEntry
         key={part._id}
