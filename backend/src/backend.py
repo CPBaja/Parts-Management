@@ -4,6 +4,7 @@ from flask import redirect
 from flask import request
 from flask_cors import CORS
 
+from model import Model
 from part import Part
 
 
@@ -32,3 +33,13 @@ def catalog_subsystem(subsystem):
         for part in parts:
             part["_id"] = str(part["_id"])
         return parts
+
+
+@app.route("/subsystems/", methods=["GET"])
+def subsystems():
+    if request.method == "GET":
+        # Ideally should not do it like this
+        subsystem_list = list(Model.client.parts.subsystems.find())
+        for subsystem in subsystem_list:
+            part["_id"] = str(part["_id"])
+        return {"subsystem_list": subsystem_list}
