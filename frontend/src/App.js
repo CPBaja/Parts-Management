@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
 import Catalog from "./Catalog";
 
@@ -8,7 +8,7 @@ function App() {
   async function fetchAll() {
     try {
       // TODO: Route here will probably change
-      const response = await axios.get("http://localhost:5000/all");
+      const response = await axios.get("http://localhost:5000/catalog");
       return response.parts;
     } catch (error) {
       console.log(error);
