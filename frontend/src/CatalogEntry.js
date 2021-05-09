@@ -40,7 +40,7 @@ function CatalogEntry(props) {
     <form>
       <fieldset>
         <legend class="catalog-entry__idn">IDN: {part.idn}</legend>
-        <subassembliesSelect part={part} subassembliesList={props.subassemblies} />
+        <SubassemblySelect part={part} subassembliesList={props.subassemblies} />
 
         {/* Note that this must be a self-closing tag due to React rules.
          */}
