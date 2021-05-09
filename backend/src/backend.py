@@ -39,7 +39,7 @@ def catalog_subsystem(subsystem):
 def subsystems():
     if request.method == "GET":
         # Ideally should not do it like this
-        subsystem_list = list(Model.client.parts.subsystems.find())
-        for subsystem in subsystem_list:
-            part["_id"] = str(part["_id"])
-        return {"subsystem_list": subsystem_list}
+        subsystems_list = list(Model.client.parts.subsystems.find())
+        for subsystem in subsystems_list:
+            subsystem["_id"] = str(subsystem["_id"])
+        return {"subsystems_list": subsystems_list}
