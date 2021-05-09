@@ -4,6 +4,9 @@ from flask import redirect
 from flask import request
 from flask_cors import CORS
 
+from part import Part
+
+
 app = Flask(__name__)
 CORS(app)
 
@@ -16,10 +19,10 @@ def home_page():
 @app.route("/catalog/", methods=["GET"])
 def catalog():
     if request.method == "GET":
-        parts = list(Part.collection.find())
-        for part in parts:
-            part["_id"] = str(user["_id"])
-        return parts
+        parts_list = list(Part.collection.find())
+        for part in parts_list:
+            part["_id"] = str(part["_id"])
+        return {"parts_list": parts_list}
 
 
 @app.route("/catalog/<subsystem>/", methods=["GET"])
@@ -27,5 +30,5 @@ def catalog_subsystem(subsystem):
     if request.method == "GET":
         parts = list(Part.collection.find({"subsystem": subsystem}))
         for part in parts:
-            part["_id"] = str(user["_id"])
+            part["_id"] = str(part["_id"])
         return parts
