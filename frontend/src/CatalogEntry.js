@@ -21,9 +21,7 @@ function OrderingPrioritySelect(props) {
 }
 
 function SubassemblySelect(props) {
-  const subassembliesList = props.subassembliesList.map((row, index) => (
-    <option key={index}>{row}</option>
-  ));
+  const subassembliesList = props.subassembliesList.map((row, index) => <option key={index}>{row}</option>);
 
   return (
     <select class="catalog-entry__dropdown" name="subassembly">
@@ -42,10 +40,7 @@ function CatalogEntry(props) {
     <form>
       <fieldset>
         <legend class="catalog-entry__idn">IDN: {part.idn}</legend>
-        <subassembliesSelect
-          part={part}
-          subassembliesList={props.subassemblies}
-        />
+        <subassembliesSelect part={part} subassembliesList={props.subassemblies} />
 
         {/* Note that this must be a self-closing tag due to React rules.
          */}
@@ -56,19 +51,11 @@ function CatalogEntry(props) {
           <br></br>
           <label>
             Go/NoGo
-            <input
-              class="catalog-entry__number"
-              type="number"
-              value={part.quantity_gonogo}
-            />
+            <input class="catalog-entry__number" type="number" value={part.quantity_gonogo} />
           </label>
           <label>
             Competition
-            <input
-              class="catalog-entry__number"
-              type="number"
-              value={part.quantity_competition}
-            />
+            <input class="catalog-entry__number" type="number" value={part.quantity_competition} />
           </label>
           <label>
             Available
