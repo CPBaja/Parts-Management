@@ -33,6 +33,7 @@ def catalog_part(_id):
         if part is None:
             # TODO: Add 404 status code
             return jsonify(success=False)
+        part["_id"] = str(part["_id"])
         return part
     if request.method == "PUT":
         part = Part.find_by_id(_id)
