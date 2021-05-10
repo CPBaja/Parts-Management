@@ -40,7 +40,7 @@ def catalog_part(_id):
         if part is None:
             # TODO: Add 404 status code
             return jsonify(success=False)
-        part.update(**request.get_json())
+        part.update(request.get_json())
         part.save()
         return part
 

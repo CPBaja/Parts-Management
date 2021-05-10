@@ -30,8 +30,8 @@ class Model(dict):
         if not self._id:
             self.collection.insert_one(self)
         else:
-            self.collection.update_one({"_id": ObjectId(self._id)}, self)
-        self._id = str(self._id)
+            id = self.pop("_id")
+            self.collection.update({"_id": ObjectId(id)}, self)
 
     def reload(self):
         """
@@ -42,7 +42,6 @@ class Model(dict):
             result = self.collection.find_one({"_id": ObjectId(self._id)})
             if result is not None:
                 self.update(result)
-                self._id = str(self._id)
                 return True
         return False
 
