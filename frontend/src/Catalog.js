@@ -3,11 +3,12 @@ import CatalogEntry from "./CatalogEntry";
 
 function Catalog(props) {
   const parts = props.partsData.map((part) => {
+    const partSubsystem = props.subsystems.find((subsystem) => subsystem.name === part.subsystem);
     return (
       <CatalogEntry
         key={part._id}
         part={part}
-        subassemblies={props.subsystems.find((subsystem) => subsystem.name === part.subsystem).subassemblies}
+        subassemblies={partSubsystem === undefined ? [] : partSubsystem.subassemblies}
       />
     );
   });
