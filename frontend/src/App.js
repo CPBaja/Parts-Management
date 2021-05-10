@@ -29,9 +29,6 @@ function App() {
   async function updatePart(part) {
     try {
       const response = await axios.put("http://localhost:5000/catalog/part/" + part._id, part);
-      console.log(part);
-      //if (response.status === 201)
-      console.log(response);
       return response.data;
     } catch (error) {
       console.log(error);
