@@ -20,10 +20,10 @@ def home_page():
 @app.route("/catalog/", methods=["GET"])
 def catalog():
     if request.method == "GET":
-        parts_list = list(Part.collection.find())
-        for part in parts_list:
+        parts = list(Part.collection.find())
+        for part in parts:
             part["_id"] = str(part["_id"])
-        return {"parts_list": parts_list}
+        return {"parts": parts}
 
 
 @app.route("/catalog/<subsystem>/", methods=["GET"])
@@ -39,7 +39,7 @@ def catalog_subsystem(subsystem):
 def subsystems():
     if request.method == "GET":
         # Ideally should not do it like this
-        subsystems_list = list(Model.client.parts.subsystems.find())
-        for subsystem in subsystems_list:
+        subsystems = list(Model.client.parts.subsystems.find())
+        for subsystem in subsystems:
             subsystem["_id"] = str(subsystem["_id"])
-        return {"subsystems_list": subsystems_list}
+        return {"subsystems": subsystems}

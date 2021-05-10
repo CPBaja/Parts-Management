@@ -10,7 +10,7 @@ function App() {
   async function fetchParts() {
     try {
       const response = await axios.get("http://localhost:5000/catalog");
-      return response.data.parts_list;
+      return response.data.parts;
     } catch (error) {
       console.log(error);
       return false;
@@ -21,7 +21,7 @@ function App() {
     try {
       // TODO: Need route to parts.subsystems here
       const response = await axios.get("http://localhost:5000/subsystems");
-      return response.data.subsystems_list;
+      return response.data.subsystems;
     } catch (error) {
       console.log(error);
       return false;
