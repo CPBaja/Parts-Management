@@ -1,16 +1,11 @@
 import React from "react";
 
 function OrderingPrioritySelect(props) {
-  {
-    /* Class naming convention: block-name__element--modifiers
-     * https://www.freecodecamp.org/news/css-naming-conventions-that-will-save-you-hours-of-debugging-35cea737d849/
-     */
-  }
+  /* Class naming convention: block-name__element--modifiers
+   * https://www.freecodecamp.org/news/css-naming-conventions-that-will-save-you-hours-of-debugging-35cea737d849/
+   */
   return (
-    <select class="catalog-entry__dropdown--colored" name="ordering_priority">
-      <option selected disabled hidden>
-        {props.orderingPriority}
-      </option>
+    <select className="catalog-entry__dropdown--colored" name="ordering_priority" defaultValue={props.orderingPriority}>
       <option>Yesterday!</option>
       <option>This Week</option>
       <option>This Month</option>
@@ -24,10 +19,7 @@ function SubassemblySelect(props) {
   const subassembliesList = props.subassembliesList.map((row, index) => <option key={index}>{row}</option>);
 
   return (
-    <select class="catalog-entry__dropdown" name="subassembly">
-      <option selected disabled hidden>
-        {props.part.subassembly}
-      </option>
+    <select className="catalog-entry__dropdown" name="subassembly" defaultValue={props.part.subassembly}>
       {subassembliesList}
     </select>
   );
@@ -39,34 +31,34 @@ function CatalogEntry(props) {
   return (
     <form>
       <fieldset>
-        <legend class="catalog-entry__idn">IDN: {part.idn}</legend>
+        <legend className="catalog-entry__idn">IDN: {part.idn}</legend>
         <SubassemblySelect part={part} subassembliesList={props.subassemblies} />
 
         {/* Note that this must be a self-closing tag due to React rules.
          */}
-        <input class="catalog-entry__name" name="name" value={part.name} />
+        <input className="catalog-entry__name" name="name" value={part.name} />
         <OrderingPrioritySelect orderingPriority={part.ordering_priority} />
-        <div class="catalog-entry__quantities">
+        <div className="catalog-entry__quantities">
           <legend>Quantity</legend>
           <br></br>
           <label>
             Go/NoGo
-            <input class="catalog-entry__number" type="number" value={part.quantity_gonogo} />
+            <input className="catalog-entry__number" type="number" value={part.quantity_gonogo} />
           </label>
           <label>
             Competition
-            <input class="catalog-entry__number" type="number" value={part.quantity_competition} />
+            <input className="catalog-entry__number" type="number" value={part.quantity_competition} />
           </label>
           <label>
             Available
             <input
-              class="catalog-entry__number catalog-entry__number--available"
+              className="catalog-entry__number catalog-entry__number--available"
               type="number"
               value={part.quantity_available}
             />
           </label>
         </div>
-        <input class="catalog-entry__save" type="submit" value="Save Changes" />
+        <input className="catalog-entry__save" type="submit" value="Save Changes" />
       </fieldset>
     </form>
   );

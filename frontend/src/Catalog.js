@@ -12,7 +12,7 @@ function Catalog(props) {
     );
   });
 
-  return <ul class="catalog-list">{parts}</ul>;
+  return <ul className="catalog-list">{parts}</ul>;
 }
 
 export default Catalog;
