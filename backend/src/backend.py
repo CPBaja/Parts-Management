@@ -6,6 +6,7 @@ from flask_cors import CORS
 
 from model import Model
 from part import Part
+from bson import ObjectId
 
 
 app = Flask(__name__)
@@ -40,7 +41,13 @@ def catalog_part(_id):
         if part is None:
             # TODO: Add 404 status code
             return jsonify(success=False)
-        part.update(**request.get_json())
+
+        print(request.get_json())
+        new_part = request.get_json()
+        if '_id' in new_part:
+            new_part['_id'] = ObjectId(new_part['_id'])
+        part.update(new_part)
+        part.save()
         return part
 
 

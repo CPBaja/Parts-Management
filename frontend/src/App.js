@@ -4,7 +4,6 @@ import Catalog from "./Catalog";
 
 function App() {
   const [parts, setParts] = useState([]);
-  // Unsure if we want subsystems to have state like parts or not
   const [subsystems, setSubsystems] = useState([]);
 
   async function fetchParts() {
@@ -19,9 +18,21 @@ function App() {
 
   async function fetchSubsystems() {
     try {
-      // TODO: Need route to parts.subsystems here
       const response = await axios.get("http://localhost:5000/subsystems");
       return response.data.subsystems;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
+
+  async function updatePart(part) {
+    try {
+      const response = await axios.put("http://localhost:5000/catalog/part/" + part._id, part);
+      console.log(part);
+      //if (response.status === 201)
+      console.log(response);
+      return response.data;
     } catch (error) {
       console.log(error);
       return false;
@@ -43,7 +54,7 @@ function App() {
   return (
     <div className="container">
       <h1>Bill Of Materials</h1>
-      <Catalog partsData={parts} subsystems={subsystems} />
+      <Catalog partsData={parts} subsystems={subsystems} handleSubmit={updatePart} />
     </div>
   );
 }

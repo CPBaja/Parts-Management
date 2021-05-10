@@ -9,6 +9,7 @@ function Catalog(props) {
         key={part._id}
         part={part}
         subassemblies={partSubsystem === undefined ? [] : partSubsystem.subassemblies}
+        handleSubmit={props.handleSubmit}
       />
     );
   });
