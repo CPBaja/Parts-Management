@@ -26,6 +26,23 @@ def catalog():
         return {"parts": parts}
 
 
+@app.route("/catalog/part/<_id>", methods=["GET", "PUT"])
+def catalog_part(_id):
+    if request.method == "GET":
+        part = Part.find_by_id(_id)
+        if part is None:
+            # TODO: Add 404 status code
+            return jsonify(success=False)
+        return part
+    if request.method == "PUT":
+        part = Part.find_by_id(_id)
+        if part is None:
+            # TODO: Add 404 status code
+            return jsonify(success=False)
+        part.update(**request.get_json())
+        return part
+
+
 @app.route("/catalog/<subsystem>/", methods=["GET"])
 def catalog_subsystem(subsystem):
     if request.method == "GET":
