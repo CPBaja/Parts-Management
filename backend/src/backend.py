@@ -57,7 +57,7 @@ def catalog_subsystem(subsystem):
 @app.route("/subsystems/", methods=["GET"])
 def subsystems():
     if request.method == "GET":
-        # Ideally should not do it like this
+        # TODO Ideally should not do it like this
         subsystems = list(Model.client.parts.subsystems.find())
         for subsystem in subsystems:
             subsystem["_id"] = str(subsystem["_id"])
