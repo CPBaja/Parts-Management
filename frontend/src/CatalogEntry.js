@@ -37,7 +37,8 @@ function CatalogEntry(props) {
   const [part, setPart] = useState(props.part);
 
   function handleChange(event) {
-    const {name, value} = event.target;
+    const name = event.target.name;
+    const value = event.target.type === "number" ? parseInt(event.target.value) : event.target.value;
     setPart({...part, [name]: value});
   }
 
