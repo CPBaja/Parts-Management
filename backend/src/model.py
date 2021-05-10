@@ -30,8 +30,8 @@ class Model(dict):
         if not self._id:
             self.collection.insert_one(self)
         else:
-            id = self.pop("_id")
-            self.collection.update({"_id": ObjectId(id)}, self)
+            _id = self.pop("_id")
+            self.collection.update({"_id": ObjectId(_id)}, self)
 
     def reload(self):
         """
