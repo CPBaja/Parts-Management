@@ -36,7 +36,7 @@ class Part(Model):
         parts = list(Part.collection.find({"_id": ObjectId(_id)}))
         if len(parts) == 0:
             return None
-        return Part(**part[0])
+        return Part(**parts[0])
 
 
 class PurchasedPart(Part):
