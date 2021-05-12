@@ -2,19 +2,44 @@
 
 ## Style Checking
 
+### PyCodeStyle and PyLint for Python
+
+To install PyCodeStyle, run the following command:  
+`pip install pycodestyle`
+
+In your editor of choice, add the python path and enable linting.
+For VSCode, open the command palette (`Ctrl+Shift+P`) and select the **Python: Enable Linting** command.
+
+Alternatively, for VSCode, add the following to `.vscode/settings.json`:
+
+```json
+{
+  "python.pythonPath": "<path>",
+  "python.linting.Enabled": true,
+  "python.linting.lintOnSave": true
+}
+```
+
+Replace `path` with the python path.
+
 ### Prettier and ESLint for JavaScript
 
-Install Prettier and ESLint onto npm in the `frontend` directory:
-`npm install --save-dev eslint prettier eslint-config-prettier eslint-plugin-prettier lint-staged`
+This setup is inspired by [this tutorial](https://thomaslombart.com/setup-eslint-prettier-react/). Please follow the link for further guidance.
 
-The following options are changed from default for:
+To install ESLint and Prettier, run the following command in the `frontend` directory:  
+`npm install --save-dev eslint prettier eslint-config-prettier eslint-plugin-prettier husky lint-staged`
 
-- `"tabWidth": 2`: Make tabs 2 spaces.
-- `"printWidth: 120`: Limit lines to 120 characters.
-- `"bracketSpacing": false`: Brackets are not surrounded by spaces.
-- `"jsxBracketSameLine": true`: JSX elements are closed on their last line rather than the line after.
+The following Prettier options are modified from their default value:
+| Option | Description |
+| ------ | ----------- |
+| `"printWidth: 120` | Specify a line length of 120 for the printer to wrap on. |
+| `"bracketSpacing": false` | Do not print spaces between brackets in object literals. |
+| `"jsxBracketSameLine": true` | Put the > of a multi-line JSX element at the end of the last line instead of being alone on the next line (does not apply to self closing elements). |
 
-Enable `formatOnSave` in your editor of choice. Below are the settings to put into `.vscode/settings.json` for VSCode:
+### Format on Save
+
+In your editor of choice, enable format on save.
+For VSCode, add the following to `.vscode/settings.json`:
 
 ```json
 {
@@ -23,22 +48,5 @@ Enable `formatOnSave` in your editor of choice. Below are the settings to put in
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
-}
-```
-
-Some addtional guidence can be found [here](https://thomaslombart.com/setup-eslint-prettier-react/).
-
-### Pep8 for Python
-
-Add the python path to your editor, if not already set and enable style checking for Pep8 (using `pylint` by default). In VSCode the following command will do:
-`Python: Enable Linter`
-
-This line can be added to `.vscode/settings.json` for VSCode:
-
-```json
-{
-  "python.pythonPath": "path/to/my/python",
-  "python.linting.Enabled": true,
-  "python.linting.lintOnSave": true
 }
 ```
