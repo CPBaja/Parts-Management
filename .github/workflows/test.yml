@@ -1,7 +1,7 @@
 
 
 
-name: CP BAJA Part-Management CI
+name: CP Baja Parts-Management CI
 
 on:
   push:
