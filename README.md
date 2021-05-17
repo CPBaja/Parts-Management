@@ -1,4 +1,5 @@
 # CPBaja Parts Management
+[![CP Baja Parts-Management CI](https://github.com/CPBaja/Parts-Management/actions/workflows/test.yml/badge.svg?branch=develop)](https://github.com/CPBaja/Parts-Management/actions/workflows/test.yml)
 
 ## Style Checking
 
