@@ -40,6 +40,11 @@ jobs:
     defaults:
       run:
         working-directory: backend
+    env:
+        PYTHONPATH: src
+        FLASK_APP: src/backend.py
+        FLASK_ENV: development
+        MONGODB_URL: ${{ secrets.MONGODB_URL }}
 
     strategy:
       matrix:
@@ -58,7 +63,4 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test with pytest
       run: |
-        pytest ./tests --ignore=./tests/test_db_url.py
-
-
-
+        python -m pytest tests --ignore=tests/test_db_url.py
