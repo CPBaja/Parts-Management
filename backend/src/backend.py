@@ -22,12 +22,12 @@ def catalog():
     if request.method == "GET":
         query = request.args.to_dict()
 
-        # See if names contain the search entry (case insensitive)
+        # Check if names contain the search entry (case insensitive)
         if "name" in query:
             query["name"] = {'$regex': ".*" +
                              query["name"] + ".*", '$options': 'i'}
 
-        # See if priority is sooner than or equal to value
+        # Check if priority is sooner than or equal to value
         if "ordering_priority" in query and query["ordering_priority"] != "Yesterday":
             priorities = ["Yesterday", "This Week",
                           "This Month", "This Year", "Completed"]

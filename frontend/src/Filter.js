@@ -2,10 +2,11 @@ import React, {useState} from "react";
 import Select, {SubassemblySelect, OrderingPrioritySelect} from "./Select";
 
 function Filter(props) {
+  const [filters, setFilters] = useState({});
   const [subsystem, setSubsystem] = useState();
   const [subassembly, setSubassembly] = useState();
-  const [filters, setFilters] = useState({});
   const [orderingPriority, setOrderingPriority] = useState("Completed");
+
   const subsystems = props.subsystems.map((item) => item.name);
   subsystems.unshift("");
 
@@ -27,7 +28,8 @@ function Filter(props) {
       default:
         break;
     }
-    // If a form field is blank, deactivate the filter and refresh
+
+    // If a form field is blank, remove the filter and refresh
     if (value === "") {
       const {[name]: value, ...without} = filters;
       setFilters(without);

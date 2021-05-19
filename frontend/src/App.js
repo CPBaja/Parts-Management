@@ -12,7 +12,7 @@ function App() {
       const response = await axios.get("http://localhost:5000/catalog", {
         params: filters,
       });
-      // TODO: Implement check for status 200
+      // TODO: Check status code
       setParts(response.data.parts);
       return response.data.parts;
     } catch (error) {
@@ -24,6 +24,8 @@ function App() {
   async function fetchSubsystems() {
     try {
       const response = await axios.get("http://localhost:5000/subsystems");
+      // TODO: Check status code
+      // Call setSubsystems() here?
       return response.data.subsystems;
     } catch (error) {
       console.log(error);
@@ -42,7 +44,7 @@ function App() {
   }
 
   useEffect(() => {
-    // Fetch the entire catalog
+    // Fetch all parts (is this correct?)
     fetchParts({}).then((result) => {
       if (result) setParts(result);
     });
