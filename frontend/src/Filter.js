@@ -27,6 +27,7 @@ function Filter(props) {
       default:
         break;
     }
+    // If a form field is blank, deactivate the filter and refresh
     if (value === "") {
       const {[name]: value, ...without} = filters;
       setFilters(without);
@@ -73,10 +74,6 @@ function Filter(props) {
               handleChange={handleChange}
             />
           </label>
-
-          {/** Do we want a button to search?  currently it updates live.
-          <input className="catalog-entry__save" type="button" value="Save Changes" onClick={submitForm} />
-          */}
         </fieldset>
       </form>
     </div>

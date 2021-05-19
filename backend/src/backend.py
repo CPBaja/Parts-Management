@@ -36,9 +36,8 @@ def catalog():
                            for i in range(priorities.index(query["ordering_priority"]) + 1)]})
             del query["ordering_priority"]
 
-        print(query)
+        # print(query) #DEBUG
         parts = list(Part.collection.find(query))
-        print(parts)
         for part in parts:
             part["_id"] = str(part["_id"])
         return {"parts": parts}

@@ -15,7 +15,7 @@ function Catalog(props) {
   });
 
   return (
-    <div className="containter">
+    <div className="container">
       <h4>Catalog (temporary header)</h4>
       <ul className="catalog-list">{parts}</ul>
     </div>

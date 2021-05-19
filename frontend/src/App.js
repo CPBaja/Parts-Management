@@ -7,16 +7,6 @@ function App() {
   const [parts, setParts] = useState([]);
   const [subsystems, setSubsystems] = useState([]);
 
-  async function fetchAllParts() {
-    try {
-      const response = await axios.get("http://localhost:5000/catalog");
-      return response.data.parts;
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
-  }
-
   async function fetchParts(filters) {
     try {
       const response = await axios.get("http://localhost:5000/catalog", {
@@ -51,7 +41,8 @@ function App() {
   }
 
   useEffect(() => {
-    fetchAllParts().then((result) => {
+    // Fetch the entire catalog
+    fetchParts({}).then((result) => {
       if (result) setParts(result);
     });
   }, []);
