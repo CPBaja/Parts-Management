@@ -14,6 +14,7 @@ function App() {
       });
       // TODO: Implement check for status 200
       setParts(response.data.parts);
+      return response.data.parts;
     } catch (error) {
       console.log(error);
       return false;
