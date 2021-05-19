@@ -1,9 +1,28 @@
 import React, {useState, useEffect} from "react";
+import {BrowserRouter as Router, Link, Route} from "react-router-dom";
 import axios from "axios";
 import Catalog from "./Catalog";
 import Filter from "./Filter";
 
 function App() {
+  return (
+    <Router>
+      <Route path="/" render={() => <h1 className="container">Parts Management</h1>} />
+      <Route exact path="/" component={Welcome} />
+      <Route path="/catalog" component={Main} />
+    </Router>
+  );
+}
+
+function Welcome() {
+  return (
+    <body className="container">
+      Welcome! Click <Link to="/catalog">here</Link> to go to the catalog.
+    </body>
+  );
+}
+
+function Main() {
   const [parts, setParts] = useState([]);
   const [subsystems, setSubsystems] = useState([]);
 
@@ -58,7 +77,6 @@ function App() {
 
   return (
     <div className="container">
-      <h1>Bill Of Materials</h1>
       <Filter subsystems={subsystems} handleFilter={fetchParts} />
       <Catalog partsData={parts} subsystems={subsystems} handleSubmit={updatePart} />
     </div>
