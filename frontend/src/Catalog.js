@@ -14,7 +14,12 @@ function Catalog(props) {
     );
   });
 
-  return <ul className="catalog-list">{parts}</ul>;
+  return (
+    <div className="container">
+      <h4>Catalog (temporary header)</h4>
+      <ul className="catalog-list">{parts}</ul>
+    </div>
+  );
 }
 
 export default Catalog;

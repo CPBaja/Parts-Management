@@ -1,14 +1,19 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import Catalog from "./Catalog";
+import Filter from "./Filter";
 
 function App() {
   const [parts, setParts] = useState([]);
   const [subsystems, setSubsystems] = useState([]);
 
-  async function fetchParts() {
+  async function fetchParts(filters) {
     try {
-      const response = await axios.get("http://localhost:5000/catalog");
+      const response = await axios.get("http://localhost:5000/catalog", {
+        params: filters,
+      });
+      // TODO: Implement check for status 200
+      setParts(response.data.parts);
       return response.data.parts;
     } catch (error) {
       console.log(error);
@@ -37,7 +42,8 @@ function App() {
   }
 
   useEffect(() => {
-    fetchParts().then((result) => {
+    // Fetch the entire catalog
+    fetchParts({}).then((result) => {
       if (result) setParts(result);
     });
   }, []);
@@ -51,6 +57,7 @@ function App() {
   return (
     <div className="container">
       <h1>Bill Of Materials</h1>
+      <Filter subsystems={subsystems} handleFilter={fetchParts} />
       <Catalog partsData={parts} subsystems={subsystems} handleSubmit={updatePart} />
     </div>
   );
