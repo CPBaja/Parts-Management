@@ -1,7 +1,11 @@
 import React, {useState} from "react";
+import {useHistory, useRouteMatch} from "react-router-dom";
 import Select, {SubassemblySelect, OrderingPrioritySelect} from "./Select";
 
 function Filter(props) {
+  const history = useHistory();
+  const match = useRouteMatch();
+
   const [filters, setFilters] = useState({});
   const [subsystem, setSubsystem] = useState();
   const [subassembly, setSubassembly] = useState();
@@ -15,6 +19,7 @@ function Filter(props) {
     switch (name) {
       case "subsystem":
         setSubsystem(props.subsystems.find((_) => _.name === value));
+        history.push(match.url + "/" + value);
         break;
       case "subassembly":
         setSubassembly(value);
