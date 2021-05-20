@@ -16,9 +16,9 @@ function App() {
 
 function Welcome() {
   return (
-    <body className="container">
+    <div className="container">
       Welcome! Click <Link to="/catalog">here</Link> to go to the catalog.
-    </body>
+    </div>
   );
 }
 
