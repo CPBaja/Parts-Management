@@ -5,12 +5,13 @@ import Select, {SubassemblySelect, OrderingPrioritySelect} from "./Select";
 function Filter(props) {
   const history = useHistory();
   const match = useRouteMatch();
+  const params = useRouteMatch(match.url + "/:subsystem?").params;
 
-  const [filters, setFilters] = useState({});
-  const [subsystem, setSubsystem] = useState();
+  const [filters, setFilters] = useState(params);
   const [subassembly, setSubassembly] = useState();
   const [orderingPriority, setOrderingPriority] = useState("Completed");
 
+  const subsystem = props.subsystems.find((_) => _.name === params.subsystem);
   const subsystems = ["", ...props.subsystems.map((_) => _.name)];
 
   function handleChange(event) {
@@ -18,7 +19,6 @@ function Filter(props) {
     const value = event.target.value;
     switch (name) {
       case "subsystem":
-        setSubsystem(props.subsystems.find((_) => _.name === value));
         history.push(match.url + "/" + value);
         break;
       case "subassembly":
