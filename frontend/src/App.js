@@ -7,7 +7,7 @@ import Filter from "./Filter";
 function App() {
   return (
     <Router>
-      <Route path="/" render={() => <h1 className="container">Parts Management</h1>} />
+      <h1 className="container">Parts Management</h1>
       <Route exact path="/" component={Welcome} />
       <Route path="/catalog" component={Main} />
     </Router>
