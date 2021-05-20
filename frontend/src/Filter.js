@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {useHistory, useRouteMatch} from "react-router-dom";
 import Select, {SubassemblySelect, OrderingPrioritySelect} from "./Select";
 
@@ -37,12 +37,15 @@ function Filter(props) {
     if (value === "") {
       const {[name]: value, ...without} = filters;
       setFilters(without);
-      props.handleFilter(without);
     } else {
       setFilters({...filters, [name]: value});
-      props.handleFilter({...filters, [name]: value});
     }
   }
+
+  useEffect(() => {
+    // TODO: Fix infinite re-rendering
+    props.handleFilter(filters);
+  }, [props, filters]);
 
   return (
     <div className="container">
