@@ -7,15 +7,14 @@ function Filter(props) {
   const [subassembly, setSubassembly] = useState();
   const [orderingPriority, setOrderingPriority] = useState("Completed");
 
-  const subsystems = props.subsystems.map((item) => item.name);
-  subsystems.unshift("");
+  const subsystems = ["", ...props.subsystems.map((_) => _.name)];
 
   function handleChange(event) {
     const name = event.target.name;
     const value = event.target.value;
     switch (name) {
       case "subsystem":
-        setSubsystem(props.subsystems.find((item) => item.name === value));
+        setSubsystem(props.subsystems.find((_) => _.name === value));
         break;
       case "subassembly":
         setSubassembly(value);
@@ -60,7 +59,7 @@ function Filter(props) {
             <SubassemblySelect
               className="filter__dropdown"
               value={subsystem ? subassembly : ""}
-              subassemblies={subsystem ? [""].concat(subsystem.subassemblies) : []}
+              subassemblies={subsystem ? ["", ...subsystem.subassemblies] : []}
               handleChange={handleChange}
             />
           </label>
