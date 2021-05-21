@@ -43,9 +43,8 @@ function Filter(props) {
   }
 
   useEffect(() => {
-    // TODO: Fix infinite re-rendering
     props.handleFilter(filters);
-  }, [props, filters]);
+  }, [props.subsystems, filters]);
 
   return (
     <div className="container">
