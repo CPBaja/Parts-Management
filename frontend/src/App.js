@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
 import {BrowserRouter as Router, Link, Route} from "react-router-dom";
-import axios from "axios";
 import Catalog from "./Catalog";
 import Filter from "./Filter";
 import {fetchSubsystems} from "./axiosget";
@@ -27,16 +26,6 @@ function Main() {
   const [parts, setParts] = useState([]);
   const [subsystems, setSubsystems] = useState([]);
 
-  async function updatePart(part) {
-    try {
-      const response = await axios.put("http://localhost:5000/catalog/part/" + part._id, part);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
-  }
-
   useEffect(() => {
     fetchSubsystems().then((result) => {
       if (result) setSubsystems(result);
@@ -46,7 +35,7 @@ function Main() {
   return (
     <div className="container">
       <Filter setParts={setParts} subsystems={subsystems} />
-      <Catalog partsData={parts} subsystems={subsystems} handleSubmit={updatePart} />
+      <Catalog partsData={parts} subsystems={subsystems} />
     </div>
   );
 }

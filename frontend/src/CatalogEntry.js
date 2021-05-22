@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {OrderingPrioritySelect, SubassemblySelect} from "./Select";
+import {updatePart} from "./axiosput";
 
 function CatalogEntry(props) {
   const [part, setPart] = useState(props.part);
@@ -8,10 +9,6 @@ function CatalogEntry(props) {
     const name = event.target.name;
     const value = event.target.type === "number" ? parseInt(event.target.value) : event.target.value;
     setPart({...part, [name]: value});
-  }
-
-  function submitForm() {
-    props.handleSubmit(part);
   }
 
   /* Class naming convention: block-name__element--modifiers *
@@ -68,7 +65,7 @@ function CatalogEntry(props) {
             />
           </label>
         </div>
-        <input className="catalog-entry__save" type="button" value="Save Changes" onClick={submitForm} />
+        <input className="catalog-entry__save" type="button" value="Save Changes" onClick={updatePart(part)} />
       </fieldset>
     </form>
   );
