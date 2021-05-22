@@ -5,16 +5,17 @@ import Filter from "./Filter";
 import {fetchSubsystems} from "./axiosget";
 
 function App() {
+  /* Page naming convention: ____Page */
   return (
     <Router>
       <h1 className="container">Parts Management</h1>
-      <Route exact path="/" component={Welcome} />
-      <Route path="/catalog" component={Main} />
+      <Route exact path="/" component={WelcomePage} />
+      <Route path="/catalog" component={CatalogPage} />
     </Router>
   );
 }
 
-function Welcome() {
+function WelcomePage() {
   return (
     <div className="container">
       Welcome! Click <Link to="/catalog">here</Link> to go to the catalog.
@@ -22,7 +23,7 @@ function Welcome() {
   );
 }
 
-function Main() {
+function CatalogPage() {
   const [parts, setParts] = useState([]);
   const [subsystems, setSubsystems] = useState([]);
 
