@@ -63,13 +63,6 @@ function Main() {
   }
 
   useEffect(() => {
-    // Fetch all parts (is this correct?)
-    fetchParts({}).then((result) => {
-      if (result) setParts(result);
-    });
-  }, []);
-
-  useEffect(() => {
     fetchSubsystems().then((result) => {
       if (result) setSubsystems(result);
     });
