@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {useHistory, useRouteMatch} from "react-router-dom";
 import Select, {SubassemblySelect, OrderingPrioritySelect} from "./Select";
+import {fetchParts} from "./axiosget";
 
 function Filter(props) {
   const history = useHistory();
@@ -43,7 +44,9 @@ function Filter(props) {
   }
 
   useEffect(() => {
-    props.handleFilter(filters);
+    fetchParts(filters).then((result) => {
+      if (result) props.setParts(result);
+    });
   }, [props.subsystems, filters]);
 
   return (
