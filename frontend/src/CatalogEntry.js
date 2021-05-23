@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {OrderingPrioritySelect, SubassemblySelect} from "./Select";
-import {updatePart} from "./axiosput";
+import {updatePart} from "./axios_put";
 
 function CatalogEntry(props) {
   const [part, setPart] = useState(props.part);

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import {BrowserRouter as Router, Link, Route} from "react-router-dom";
 import Catalog from "./Catalog";
 import Filter from "./Filter";
-import {fetchSubsystems} from "./axiosget";
+import {fetchSubsystems} from "./axios_get";
 
 function App() {
   /* Page naming convention: ____Page */

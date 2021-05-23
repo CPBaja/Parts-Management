@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {useHistory, useRouteMatch} from "react-router-dom";
 import Select, {SubassemblySelect, OrderingPrioritySelect} from "./Select";
-import {fetchParts} from "./axiosget";
+import {fetchParts} from "./axios_get";
 
 function Filter(props) {
   const history = useHistory();
