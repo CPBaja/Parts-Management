@@ -43,11 +43,15 @@ function Filter(props) {
     }
   }
 
-  useEffect(() => {
-    fetchParts(filters).then((result) => {
-      if (result) props.setParts(result);
-    });
-  }, [props.subsystems, filters]);
+  useEffect(
+    () => {
+      fetchParts(filters).then((result) => {
+        if (result) props.setParts(result);
+      });
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [props.subsystems, filters]
+  );
 
   return (
     <div className="container">
