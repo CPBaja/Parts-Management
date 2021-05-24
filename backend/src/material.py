@@ -8,6 +8,7 @@ class Material(Model):
 
     def __init__(self):
         super().__init__()
+        self._type = type(self).__name__
 
 
 class Aluminum(Material):
@@ -16,6 +17,7 @@ class Aluminum(Material):
     """
 
     def __init__(self, alloy):
+        super().__init__()
         self.alloy = alloy
 
 
@@ -23,7 +25,9 @@ class CarbonFiber(Material):
     """
     An aluminum material. Extends Material.
     """
-    pass
+
+    def __init__(self):
+        super().__init__()
 
 
 class Steel(Material):
@@ -32,4 +36,5 @@ class Steel(Material):
     """
 
     def __init__(self, alloy):
+        super().__init__()
         self.alloy = alloy

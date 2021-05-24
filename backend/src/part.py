@@ -15,6 +15,7 @@ class Part(Model):
 
     def __init__(self, **kwargs):
         super().__init__()
+        self._type = type(self).__name__
         self.name = ""
         self.subsystem = ""
         self.subassembly = ""

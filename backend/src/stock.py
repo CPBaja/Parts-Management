@@ -8,6 +8,7 @@ class Stock(Model):
 
     def __init__(self, material, quantity, length):
         super().__init__()
+        self._type = type(self).__name__
         self.material = material
         self.quantity = quantity
         self.length = length
