@@ -58,6 +58,16 @@ class FastenerPart(PurchasedPart):
         self.vendor_sku = ""
 
 
+class BearingPart(PurchasedPart):
+    """
+    A bearing part. Extends PurchasedPart.
+    """
+
+    def __init__(self):
+        super().__init__()
+        self.trade_number = ""
+
+
 class ManufacturedPart(Part):
     """
     A manufactured part. Extends Part.
