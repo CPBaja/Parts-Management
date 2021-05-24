@@ -1,12 +1,18 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import {useHistory, useRouteMatch} from "react-router-dom";
 import Select, {SubassemblySelect, OrderingPrioritySelect} from "./Select";
+import {fetchParts} from "./axios_get";
 
 function Filter(props) {
-  const [filters, setFilters] = useState({});
-  const [subsystem, setSubsystem] = useState();
+  const history = useHistory();
+  const match = useRouteMatch();
+  const params = useRouteMatch(match.url + "/:subsystem?").params;
+
+  const [filters, setFilters] = useState(params);
   const [subassembly, setSubassembly] = useState();
   const [orderingPriority, setOrderingPriority] = useState("Completed");
 
+  const subsystem = props.subsystems.find((_) => _.name === params.subsystem);
   const subsystems = ["", ...props.subsystems.map((_) => _.name)];
 
   function handleChange(event) {
@@ -14,7 +20,7 @@ function Filter(props) {
     const value = event.target.value;
     switch (name) {
       case "subsystem":
-        setSubsystem(props.subsystems.find((_) => _.name === value));
+        history.push(match.url + "/" + value);
         break;
       case "subassembly":
         setSubassembly(value);
@@ -32,12 +38,20 @@ function Filter(props) {
     if (value === "") {
       const {[name]: value, ...without} = filters;
       setFilters(without);
-      props.handleFilter(without);
     } else {
       setFilters({...filters, [name]: value});
-      props.handleFilter({...filters, [name]: value});
     }
   }
+
+  useEffect(
+    () => {
+      fetchParts(filters).then((result) => {
+        if (result) props.setParts(result);
+      });
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [props.subsystems, filters]
+  );
 
   return (
     <div className="container">
