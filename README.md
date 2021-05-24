@@ -35,6 +35,7 @@ The following Prettier options are modified from their default value:
 | Option | Description |
 | ------ | ----------- |
 | `"jsxBracketSameLine": true` | Put the > of a multi-line JSX element at the end of the last line instead of being alone on the next line (does not apply to self closing elements). |
+| `"endOfLine": "auto"` | Maintain existing line endings (mixed values within one file are normalized by looking at what’s used after the first line). |
 
 ### Format on Save
 

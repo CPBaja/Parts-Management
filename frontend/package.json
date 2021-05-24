@@ -30,7 +30,8 @@
     ]
   },
   "prettier": {
-    "jsxBracketSameLine": true
+    "jsxBracketSameLine": true,
+    "endOfLine": "auto"
   },
   "husky": {
     "hooks": {
