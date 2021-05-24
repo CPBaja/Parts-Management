@@ -2,7 +2,7 @@ import React from "react";
 import CatalogEntry from "./CatalogEntry";
 
 function Catalog(props) {
-  const parts = props.partsData.map((part) => {
+  const parts = props.parts.map((part) => {
     const partSubsystem = props.subsystems.find((subsystem) => subsystem.name === part.subsystem);
     return (
       <CatalogEntry

@@ -36,7 +36,7 @@ function CatalogPage() {
   return (
     <div className="container">
       <Filter setParts={setParts} subsystems={subsystems} />
-      <Catalog partsData={parts} subsystems={subsystems} />
+      <Catalog parts={parts} subsystems={subsystems} />
     </div>
   );
 }
