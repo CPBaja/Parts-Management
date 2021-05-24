@@ -37,6 +37,7 @@ function PartEdit() {
       <form>
         <fieldset>
           <legend className="full-edit__idn">IDN: {part.idn}</legend>
+          <legend>Subsystem</legend>
           <Select
             className="full-edit__subsystems"
             name="subsystem"
@@ -46,13 +47,16 @@ function PartEdit() {
           />
           {/* Note that this must be a self-closing tag due to React rules.
            */}
+          <legend>Subassembly</legend>
           <SubassemblySelect
             className="full-edit__subassemblies"
             value={part.subassembly}
             subassemblies={partSubsystem === undefined ? [] : partSubsystem.subassemblies}
             handleChange={handleChange}
           />
+          <legend>Part Name</legend>
           <input className="full-edit__name" name="name" defaultValue={part.name} onBlur={handleChange} />
+          <legend>Ordering Priority</legend>
           <OrderingPrioritySelect
             className="full-edit__dropdown--colored"
             value={part.ordering_priority}
