@@ -65,7 +65,7 @@ function CatalogEntry(props) {
             />
           </label>
         </div>
-        <input className="catalog-entry__save" type="button" value="Save Changes" onClick={updatePart(part)} />
+        <input className="catalog-entry__save" type="button" value="Save Changes" onClick={() => updatePart(part)} />
       </fieldset>
     </form>
   );
