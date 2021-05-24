@@ -62,15 +62,6 @@ def catalog_part(_id):
         return part
 
 
-@ app.route("/catalog/<subsystem>/", methods=["GET"])
-def catalog_subsystem(subsystem):
-    if request.method == "GET":
-        parts = list(Part.collection.find({"subsystem": subsystem}))
-        for part in parts:
-            part["_id"] = str(part["_id"])
-        return parts
-
-
 @ app.route("/subsystems/", methods=["GET"])
 def subsystems():
     if request.method == "GET":
