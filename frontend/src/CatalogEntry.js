@@ -1,14 +1,17 @@
-import React, {useState} from "react";
-import {OrderingPrioritySelect, SubassemblySelect} from "./Select";
-import {updatePart} from "./axios_put";
+import React, { useState } from "react";
+import { OrderingPrioritySelect, SubassemblySelect } from "./Select";
+import { updatePart } from "./axios_put";
 
 function CatalogEntry(props) {
   const [part, setPart] = useState(props.part);
 
   function handleChange(event) {
     const name = event.target.name;
-    const value = event.target.type === "number" ? parseInt(event.target.value) : event.target.value;
-    setPart({...part, [name]: value});
+    const value =
+      event.target.type === "number"
+        ? parseInt(event.target.value)
+        : event.target.value;
+    setPart({ ...part, [name]: value });
   }
 
   /* Class naming convention: block-name__element--modifiers *
@@ -25,7 +28,12 @@ function CatalogEntry(props) {
         />
         {/* Note that this must be a self-closing tag due to React rules.
          */}
-        <input className="catalog-entry__name" name="name" defaultValue={part.name} onBlur={handleChange} />
+        <input
+          className="catalog-entry__name"
+          name="name"
+          defaultValue={part.name}
+          onBlur={handleChange}
+        />
         <OrderingPrioritySelect
           className="catalog-entry__dropdown--colored"
           value={part.ordering_priority}
@@ -65,7 +73,12 @@ function CatalogEntry(props) {
             />
           </label>
         </div>
-        <input className="catalog-entry__save" type="button" value="Save Changes" onClick={() => updatePart(part)} />
+        <input
+          className="catalog-entry__save"
+          type="button"
+          value="Save Changes"
+          onClick={() => updatePart(part)}
+        />
       </fieldset>
     </form>
   );

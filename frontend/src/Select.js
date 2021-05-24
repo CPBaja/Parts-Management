@@ -1,7 +1,9 @@
 import React from "react";
 
 function Select(props) {
-  const optionsList = props.optionsList.map((row, index) => <option key={index}>{row}</option>);
+  const optionsList = props.optionsList.map((row, index) => (
+    <option key={index}>{row}</option>
+  ));
 
   return (
     <select
@@ -64,4 +66,4 @@ function OrderingPrioritySelect(props) {
   );
 }
 
-export {Select as default, SubassemblySelect, OrderingPrioritySelect};
+export { Select as default, SubassemblySelect, OrderingPrioritySelect };

@@ -1,4 +1,5 @@
 # CPBaja Parts Management
+
 [![CP Baja Parts-Management CI](https://github.com/CPBaja/Parts-Management/actions/workflows/test.yml/badge.svg?branch=develop)](https://github.com/CPBaja/Parts-Management/actions/workflows/test.yml)
 
 ## Style Checking
@@ -33,8 +34,6 @@ To install ESLint and Prettier, run the following command in the `frontend` dire
 The following Prettier options are modified from their default value:
 | Option | Description |
 | ------ | ----------- |
-| `"printWidth: 120` | Specify a line length of 120 for the printer to wrap on. |
-| `"bracketSpacing": false` | Do not print spaces between brackets in object literals. |
 | `"jsxBracketSameLine": true` | Put the > of a multi-line JSX element at the end of the last line instead of being alone on the next line (does not apply to self closing elements). |
 
 ### Format on Save

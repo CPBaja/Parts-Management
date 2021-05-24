@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from "react";
-import {useHistory, useRouteMatch} from "react-router-dom";
-import Select, {SubassemblySelect, OrderingPrioritySelect} from "./Select";
-import {fetchParts} from "./axios_get";
+import React, { useState, useEffect } from "react";
+import { useHistory, useRouteMatch } from "react-router-dom";
+import Select, { SubassemblySelect, OrderingPrioritySelect } from "./Select";
+import { fetchParts } from "./axios_get";
 
 function Filter(props) {
   const history = useHistory();
@@ -36,10 +36,10 @@ function Filter(props) {
 
     // If a form field is blank, remove the filter
     if (value === "") {
-      const {[name]: value, ...without} = filters;
+      const { [name]: value, ...without } = filters;
       setFilters(without);
     } else {
-      setFilters({...filters, [name]: value});
+      setFilters({ ...filters, [name]: value });
     }
   }
 
@@ -79,7 +79,12 @@ function Filter(props) {
           </label>
           <label>
             Part Name
-            <input className="filter__name" name="name" defaultValue="" onChange={handleChange} />
+            <input
+              className="filter__name"
+              name="name"
+              defaultValue=""
+              onChange={handleChange}
+            />
           </label>
           <label>
             Ordering Priority
