@@ -43,7 +43,7 @@ def catalog():
         return {"parts": parts}
 
 
-@ app.route("/catalog/part/<_id>", methods=["GET", "PUT"])
+@ app.route("/part/<_id>", methods=["GET", "PUT"])
 def catalog_part(_id):
     if request.method == "GET":
         part = Part.find_by_id(_id)
