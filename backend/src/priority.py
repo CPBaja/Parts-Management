@@ -1,9 +1,13 @@
+from model import Model
 
-class Priority:
+
+class Priority(Model):
     """
-    An abstract priority.
+    An abstract priority. Extends Model.
     """
-    pass
+
+    def __init__(self):
+        super().__init__()
 
 
 class YesterdayPriority(Priority):

@@ -1,9 +1,13 @@
+from model import Model
 
-class Material:
+
+class Material(Model):
     """
-    An abstract material.
+    An abstract material. Extends Model.
     """
-    pass
+
+    def __init__(self):
+        super().__init__()
 
 
 class Aluminum(Material):

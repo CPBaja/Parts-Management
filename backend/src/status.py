@@ -1,9 +1,13 @@
+from model import Model
 
-class Status:
+
+class Status(Model):
     """
-    An abstract status.
+    An abstract status. Extends Model.
     """
-    pass
+
+    def __init__(self):
+        super().__init__()
 
 
 class ToDoStatus(Status):

@@ -11,7 +11,7 @@ def get_mongo_client():
 
 class Model(dict):
     """
-    An abstract model. Wraps a dict.
+    An abstract model. Extends Model.
     Implements a method of saving, reloading, and deleting documents to/in/from
     a Mongo DB.
     """

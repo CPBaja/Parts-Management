@@ -1,10 +1,13 @@
+from model import Model
 
-class Stock:
+
+class Stock(Model):
     """
-    An abstract stock.
+    An abstract stock. Extends Model.
     """
 
     def __init__(self, material, quantity, length):
+        super().__init__()
         self.material = material
         self.quantity = quantity
         self.length = length
