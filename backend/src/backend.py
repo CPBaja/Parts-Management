@@ -1,7 +1,4 @@
-from flask import Flask
-from flask import jsonify
-from flask import redirect
-from flask import request
+from flask import Flask, jsonify, redirect, request
 from flask_cors import CORS
 
 from model import Model
