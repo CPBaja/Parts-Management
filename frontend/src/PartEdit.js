@@ -105,6 +105,7 @@ function PartEdit() {
               history.goBack();
             }}
           />
+          {/* Need to change goBack call so that catalog page refreshes */}
         </fieldset>
       </form>
     </div>
