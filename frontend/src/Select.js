@@ -31,24 +31,24 @@ function OrderingPrioritySelect(props) {
   // Option: style
   const priorities = {
     Yesterday: {
-      color: "#36393d",
-      "background-color": "#ffcccc",
+      color: "#800000",
+      "background-color": "#ffc0c0",
     },
     "This Week": {
-      color: "#36393d",
-      "background-color": "#ffcc99",
+      color: "#800000",
+      "background-color": "#ffc080",
     },
     "This Month": {
-      color: "#36393d",
-      "background-color": "#ffff88",
+      color: "#404000",
+      "background-color": "#ffffc0",
     },
     "This Year": {
-      color: "#82b366",
-      "background-color": "#d5e8d4",
+      color: "#004000",
+      "background-color": "#c0ffc0",
     },
     Completed: {
-      color: "#36393d",
-      "background-color": "#eeeeee",
+      color: "#404040",
+      "background-color": "#c0c0c0",
     },
   };
 
