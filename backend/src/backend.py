@@ -27,6 +27,7 @@ def catalog():
             query["name"] = {'$regex': ".*" +
                              query["name"] + ".*", '$options': 'i'}
 
+        # TODO: This should be handled by the Priority class(es)
         # Check if priority is sooner than or equal to value
         if "ordering_priority" in query and query["ordering_priority"] != "Yesterday":
             priorities = ["Yesterday", "This Week",

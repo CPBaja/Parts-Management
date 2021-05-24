@@ -34,7 +34,7 @@ function Filter(props) {
         break;
     }
 
-    // If a form field is blank, remove the filter and refresh
+    // If a form field is blank, remove the filter
     if (value === "") {
       const {[name]: value, ...without} = filters;
       setFilters(without);
