@@ -48,6 +48,16 @@ class PurchasedPart(Part):
         super().__init__()
 
 
+class FastenerPart(PurchasedPart):
+    """
+    A fastener part. Extends PurchasedPart.
+    """
+
+    def __init__(self):
+        super().__init__()
+        self.vendor_sku = ""
+
+
 class ManufacturedPart(Part):
     """
     A manufactured part. Extends Part.
