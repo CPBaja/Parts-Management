@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {useHistory, useRouteMatch} from "react-router-dom"; // For parsing the url and going back to catalog on finish (history.goBack?)
+import {useHistory, useRouteMatch} from "react-router-dom";
 import Select, {SubassemblySelect, OrderingPrioritySelect} from "./Select";
-import {fetchPart} from "./axios_get";
+import {fetchPart, fetchSubsystems} from "./axios_get";
 import {updatePart} from "./axios_put";
 
 function PartEdit() {
@@ -10,6 +10,7 @@ function PartEdit() {
   const params = useRouteMatch(match.url + "/:_id?").params;
 
   const [part, setPart] = useState({});
+  const [subsystems, setSubsystems] = useState([]);
 
   function handleChange(event) {
     const name = event.target.name;
@@ -23,32 +24,47 @@ function PartEdit() {
     });
   }, [params._id]);
 
+  useEffect(() => {
+    fetchSubsystems().then((result) => {
+      if (result) setSubsystems(result);
+    });
+  }, []);
+
+  const partSubsystem = subsystems.find((subsystem) => subsystem.name === part.subsystem);
+
   return (
     <div className="container">
       <form>
         <fieldset>
-          <legend className="catalog-entry__idn">IDN: {part.idn}</legend>
-          <SubassemblySelect
-            className="catalog-entry__dropdown"
-            value={part.subassembly}
-            subassemblies={[]} // TODO: Fetch subsystems
+          <legend className="full-edit__idn">IDN: {part.idn}</legend>
+          <Select
+            className="full-edit__subsystems"
+            name="subsystem"
+            value={part.subsystem}
             handleChange={handleChange}
+            optionsList={subsystems.map((subsytem) => subsytem.name)}
           />
           {/* Note that this must be a self-closing tag due to React rules.
            */}
-          <input className="catalog-entry__name" name="name" defaultValue={part.name} onBlur={handleChange} />
+          <SubassemblySelect
+            className="full-edit__subassemblies"
+            value={part.subassembly}
+            subassemblies={partSubsystem === undefined ? [] : partSubsystem.subassemblies}
+            handleChange={handleChange}
+          />
+          <input className="full-edit__name" name="name" defaultValue={part.name} onBlur={handleChange} />
           <OrderingPrioritySelect
-            className="catalog-entry__dropdown--colored"
+            className="full-edit__dropdown--colored"
             value={part.ordering_priority}
             handleChange={handleChange}
           />
-          <div className="catalog-entry__quantities">
+          <div className="full-edit__quantities">
             <legend>Quantity</legend>
             <br></br>
             <label>
               Go/NoGo
               <input
-                className="catalog-entry__number"
+                className="full-edit__number"
                 type="number"
                 name="quantity_gonogo"
                 defaultValue={part.quantity_gonogo}
@@ -58,7 +74,7 @@ function PartEdit() {
             <label>
               Competition
               <input
-                className="catalog-entry__number"
+                className="full-edit__number"
                 type="number"
                 name="quantity_competition"
                 defaultValue={part.quantity_competition}
@@ -68,7 +84,7 @@ function PartEdit() {
             <label>
               Available
               <input
-                className="catalog-entry__number catalog-entry__number--available"
+                className="full-edit__number--available"
                 type="number"
                 name="quantity_available"
                 defaultValue={part.quantity_available}
@@ -76,12 +92,14 @@ function PartEdit() {
               />
             </label>
           </div>
-          <input className="catalog-entry__save" type="button" value="Save Changes" onClick={() => updatePart(part)} />
           <input
-            className="catalog-entry__save"
+            className="full-edit__save"
             type="button"
-            value="Return to Catalog"
-            onClick={() => history.goBack()}
+            value="Save Changes"
+            onClick={() => {
+              updatePart(part);
+              history.goBack();
+            }}
           />
         </fieldset>
       </form>
