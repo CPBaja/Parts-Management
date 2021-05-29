@@ -1,6 +1,10 @@
 import React from "react";
 import CatalogEntry from "./CatalogEntry";
 
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
+import ListGroupItem from "react-bootstrap/ListGroupItem";
+
 function Catalog(props) {
   const parts = props.parts.map((part) => {
     const partSubsystem = props.subsystems.find(
@@ -18,10 +22,13 @@ function Catalog(props) {
   });
 
   return (
-    <div className="container">
-      <h4>Catalog (temporary header)</h4>
-      <ul className="catalog-list">{parts}</ul>
-    </div>
+    <Card border="dark" className="bg-light">
+      <Card.Header as="h4">Catalog (temporary header)</Card.Header>
+
+      <Card.Body>
+        <ul>{parts}</ul>
+      </Card.Body>
+    </Card>
   );
 }
 

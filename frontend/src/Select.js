@@ -1,5 +1,6 @@
 import React from "react";
 import { parseType } from "./json_type.js";
+import Form from "react-bootstrap/Form";
 
 function Select(props) {
   const optionsList = props.optionsList.map((row, index) => (
@@ -7,14 +8,16 @@ function Select(props) {
   ));
 
   return (
-    <select
+    <Form.Select
+      size={props.size ? props.size : undefined}
+      bsPrefix={"form-select"}
       className={props.className}
       name={props.name}
       value={props.value}
       onChange={props.handleChange}
       style={props.style ? props.style : undefined}>
       {optionsList}
-    </select>
+    </Form.Select>
   );
 }
 
@@ -22,6 +25,7 @@ function SubassemblySelect(props) {
   return (
     <Select
       className={props.className}
+      size="sm"
       name="subassembly"
       value={props.value}
       handleChange={props.handleChange}
@@ -37,28 +41,30 @@ function OrderingPrioritySelect(props) {
   const priorities = {
     Yesterday: {
       color: "#800000",
-      "background-color": "#ffc0c0",
+      backgroundColor: "#ffc0c0",
     },
     "This Week": {
       color: "#800000",
-      "background-color": "#ffc080",
+      backgroundColor: "#ffc080",
     },
     "This Month": {
       color: "#404000",
-      "background-color": "#ffffc0",
+      backgroundColor: "#ffffc0",
     },
     "This Year": {
       color: "#004000",
-      "background-color": "#c0ffc0",
+      backgroundColor: "#c0ffc0",
     },
     Completed: {
       color: "#404040",
-      "background-color": "#c0c0c0",
+      backgroundColor: "#c0c0c0",
     },
   };
 
+  // TODO: turn this into a pill :O
   return (
     <Select
+      size="sm"
       className={props.className}
       name="ordering_priority"
       value={value}

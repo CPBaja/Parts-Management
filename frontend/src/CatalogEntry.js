@@ -4,6 +4,11 @@ import { OrderingPrioritySelect, SubassemblySelect } from "./Select";
 import { updatePart } from "./axios_put";
 import { serializeType } from "./json_type";
 
+import Card from "react-bootstrap/Card";
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+
 function CatalogEntry(props) {
   const [part, setPart] = useState(props.part);
 
@@ -25,28 +30,35 @@ function CatalogEntry(props) {
   /* Class naming convention: block-name__element--modifiers *
         https://www.freecodecamp.org/news/css-naming-conventions-that-will-save-you-hours-of-debugging-35cea737d849/ */
   return (
-    <form>
-      <fieldset>
-        <legend className="catalog-entry__idn">IDN: {part.idn}</legend>
-        <SubassemblySelect
-          className="catalog-entry__dropdown"
-          value={part.subassembly}
-          subassemblies={props.subassemblies}
-          handleChange={handleChange}
-        />
-        {/* Note that this must be a self-closing tag due to React rules.
-         */}
-        <input
-          className="catalog-entry__name"
-          name="name"
-          defaultValue={part.name}
-          onBlur={handleChange}
-        />
-        <OrderingPrioritySelect
-          className="catalog-entry__dropdown--colored"
-          value={part.ordering_priority}
-          handleChange={handleChange}
-        />
+    <Card body border="dark" className="mb-1">
+      <Card.Title>IDN: {part.idn}</Card.Title>
+      <Form>
+        <Row>
+          <Col sm={3}>
+            <SubassemblySelect
+              className="catalog-entry__dropdown"
+              value={part.subassembly}
+              subassemblies={props.subassemblies}
+              handleChange={handleChange}
+            />
+          </Col>
+          <Col sm={4}>
+            <Form.Control
+              size="sm"
+              className="catalog-entry__name"
+              name="name"
+              defaultValue={part.name}
+              onBlur={handleChange}
+            />
+          </Col>
+          <Col sm={2}>
+            <OrderingPrioritySelect
+              className="catalog-entry__dropdown--colored"
+              value={part.ordering_priority}
+              handleChange={handleChange}
+            />
+          </Col>
+        </Row>
         <div className="catalog-entry__quantities">
           <legend>Quantity</legend>
           <br></br>
@@ -90,8 +102,8 @@ function CatalogEntry(props) {
         <Link to={"/part/" + part._id}>
           <button type="button">Edit Part</button>
         </Link>
-      </fieldset>
-    </form>
+      </Form>
+    </Card>
   );
 }
 
