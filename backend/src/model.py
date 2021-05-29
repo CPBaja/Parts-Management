@@ -58,3 +58,28 @@ class Model(dict):
                 self.clear()
             return resp
         return None
+
+    @classmethod
+    def get_subclasses(cls):
+        subclasses = {}
+        for subclass in cls.__subclasses__():
+            # Add the subclass to the dict
+            subclasses[subclass.__name__] = subclass
+            # Add its subclasses to the dict (recursive)
+            subclasses.update(subclass.get_subclasses())
+        return subclasses
+
+    @classmethod
+    def from_json(cls, json):
+        # Use "_type" attribute to determine object type
+        # Use other attributes as constructor parameters
+        args = json.copy()
+        args.pop("_type")
+        obj = cls.get_subclasses().get(json["_type"], cls)(**args)
+
+        # Replace typed attributes with objects (recursive)
+        for attr in obj:
+            if type(json[attr]) == dict and "_type" in json[attr]:
+                obj[attr] = Model.from_json(json[attr])
+
+        return obj
