@@ -54,3 +54,12 @@ class ThisYearPriority(Priority):
 
     def __init__(self):
         super().__init__()
+
+
+class CompletedPriority(Priority):
+    """
+    A completed priority. Extends Priority.
+    """
+
+    def __init__(self):
+        super().__init__()
