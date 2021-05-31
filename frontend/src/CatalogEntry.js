@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { OrderingPrioritySelect, SubassemblySelect } from "./Select";
 import { updatePart } from "./axios_put";
 
@@ -79,6 +80,9 @@ function CatalogEntry(props) {
           value="Save Changes"
           onClick={() => updatePart(part)}
         />
+        <Link to={"/part/" + part._id}>
+          <button type="button">Edit Part</button>
+        </Link>
       </fieldset>
     </form>
   );

@@ -13,6 +13,17 @@ export async function fetchParts(filters) {
   }
 }
 
+export async function fetchPart(_id) {
+  try {
+    const response = await axios.get("http://localhost:5000/part/" + _id);
+    // TODO: Check status code
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
 export async function fetchSubsystems() {
   try {
     const response = await axios.get("http://localhost:5000/subsystems");
