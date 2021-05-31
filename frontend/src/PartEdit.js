@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
-import {useHistory, useRouteMatch} from "react-router-dom";
-import Select, {SubassemblySelect, OrderingPrioritySelect} from "./Select";
-import {fetchPart, fetchSubsystems} from "./axios_get";
-import {updatePart} from "./axios_put";
+import React, { useEffect, useState } from "react";
+import { useHistory, useRouteMatch } from "react-router-dom";
+import Select, { SubassemblySelect, OrderingPrioritySelect } from "./Select";
+import { fetchPart, fetchSubsystems } from "./axios_get";
+import { updatePart } from "./axios_put";
 
 function PartEdit() {
   const history = useHistory();
@@ -14,8 +14,11 @@ function PartEdit() {
 
   function handleChange(event) {
     const name = event.target.name;
-    const value = event.target.type === "number" ? parseInt(event.target.value) : event.target.value;
-    setPart({...part, [name]: value});
+    const value =
+      event.target.type === "number"
+        ? parseInt(event.target.value)
+        : event.target.value;
+    setPart({ ...part, [name]: value });
   }
 
   useEffect(() => {
@@ -30,7 +33,9 @@ function PartEdit() {
     });
   }, []);
 
-  const partSubsystem = subsystems.find((subsystem) => subsystem.name === part.subsystem);
+  const partSubsystem = subsystems.find(
+    (subsystem) => subsystem.name === part.subsystem
+  );
 
   return (
     <div className="container">
@@ -51,11 +56,18 @@ function PartEdit() {
           <SubassemblySelect
             className="full-edit__subassemblies"
             value={part.subassembly}
-            subassemblies={partSubsystem === undefined ? [] : partSubsystem.subassemblies}
+            subassemblies={
+              partSubsystem === undefined ? [] : partSubsystem.subassemblies
+            }
             handleChange={handleChange}
           />
           <legend>Part Name</legend>
-          <input className="full-edit__name" name="name" defaultValue={part.name} onBlur={handleChange} />
+          <input
+            className="full-edit__name"
+            name="name"
+            defaultValue={part.name}
+            onBlur={handleChange}
+          />
           <legend>Ordering Priority</legend>
           <OrderingPrioritySelect
             className="full-edit__dropdown--colored"
