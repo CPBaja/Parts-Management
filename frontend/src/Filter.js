@@ -80,7 +80,7 @@ function Filter(props) {
                 optionsList={subsystems}
               />
             </Col>
-            <Col>
+            <Col className={subsystem ? "visible" : "invisible"}>
               <Form.Label>Subassembly</Form.Label>
               <SubassemblySelect
                 className="filter__dropdown"
