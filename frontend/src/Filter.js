@@ -30,7 +30,7 @@ function Filter(props) {
     let value = event.target.value;
     switch (name) {
       case "subsystem":
-        history.push(match.url + "/" + value);
+        history.push(match.url + (value === "" ? "" : "/" + value));
         break;
       case "subassembly":
         setSubassembly(value);
