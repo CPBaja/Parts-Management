@@ -41,7 +41,7 @@ function PartEdit() {
     <form>
       <fieldset>
         <legend className="full-edit__idn">IDN: {part.idn}</legend>
-        <legend>Subsystem</legend>
+        <label>Subsystem</label>
         <Select
           className="full-edit__subsystems"
           name="subsystem"
@@ -51,7 +51,7 @@ function PartEdit() {
         />
         {/* Note that this must be a self-closing tag due to React rules.
          */}
-        <legend>Subassembly</legend>
+        <label>Subassembly</label>
         <SubassemblySelect
           className="full-edit__subassemblies"
           value={part.subassembly}
@@ -60,21 +60,21 @@ function PartEdit() {
           }
           handleChange={handleChange}
         />
-        <legend>Part Name</legend>
+        <label>Part Name</label>
         <input
           className="full-edit__name"
           name="name"
           defaultValue={part.name}
           onBlur={handleChange}
         />
-        <legend>Ordering Priority</legend>
+        <label>Ordering Priority</label>
         <OrderingPrioritySelect
           className="full-edit__dropdown--colored"
           value={part.ordering_priority}
           handleChange={handleChange}
         />
         <div className="full-edit__quantities">
-          <legend>Quantity</legend>
+          <label>Quantity</label>
           <br></br>
           <label>
             Go/NoGo
