@@ -39,8 +39,6 @@ def catalog():
 
         # print(query) #DEBUG
         parts = [Part.from_json(part) for part in Part.collection.find(query)]
-        for part in parts:
-            part["_id"] = str(part["_id"])
         return {"parts": parts}
 
 
@@ -52,7 +50,6 @@ def catalog_part(_id):
         return jsonify(success=False)
 
     if request.method == "GET":
-        part["_id"] = str(part["_id"])
         return part
 
     if request.method == "PUT":

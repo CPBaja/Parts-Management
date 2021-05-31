@@ -82,6 +82,10 @@ class Model(dict):
             if type(json[attr]) == dict and "_type" in json[attr]:
                 obj[attr] = Model.from_json(json[attr])
 
+        # Replace MongoDB ObjectId (if it exists) with string
+        if "_id" in obj:
+            obj["_id"] = str(obj["_id"])
+
         return obj
 
     @classmethod
