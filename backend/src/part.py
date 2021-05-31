@@ -32,13 +32,6 @@ class Part(Model):
         # Overwrite attributes from kwargs at the end
         self.update(kwargs)
 
-    @classmethod
-    def find_by_id(cls, _id):
-        parts = list(Part.collection.find({"_id": ObjectId(_id)}))
-        if len(parts) == 0:
-            return None
-        return Part(**parts[0])
-
 
 class PurchasedPart(Part):
     """

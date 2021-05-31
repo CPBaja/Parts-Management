@@ -83,3 +83,8 @@ class Model(dict):
                 obj[attr] = Model.from_json(json[attr])
 
         return obj
+
+    @classmethod
+    def find_by_id(cls, _id):
+        jsons = list(cls.collection.find({"_id": ObjectId(_id)}))
+        return cls.from_json(jsons[0]) if len(jsons) > 0 else None
