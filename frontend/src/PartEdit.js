@@ -38,89 +38,87 @@ function PartEdit() {
   );
 
   return (
-    <div className="container">
-      <form>
-        <fieldset>
-          <legend className="full-edit__idn">IDN: {part.idn}</legend>
-          <legend>Subsystem</legend>
-          <Select
-            className="full-edit__subsystems"
-            name="subsystem"
-            value={part.subsystem}
-            handleChange={handleChange}
-            optionsList={subsystems.map((subsytem) => subsytem.name)}
-          />
-          {/* Note that this must be a self-closing tag due to React rules.
-           */}
-          <legend>Subassembly</legend>
-          <SubassemblySelect
-            className="full-edit__subassemblies"
-            value={part.subassembly}
-            subassemblies={
-              partSubsystem === undefined ? [] : partSubsystem.subassemblies
-            }
-            handleChange={handleChange}
-          />
-          <legend>Part Name</legend>
-          <input
-            className="full-edit__name"
-            name="name"
-            defaultValue={part.name}
-            onBlur={handleChange}
-          />
-          <legend>Ordering Priority</legend>
-          <OrderingPrioritySelect
-            className="full-edit__dropdown--colored"
-            value={part.ordering_priority}
-            handleChange={handleChange}
-          />
-          <div className="full-edit__quantities">
-            <legend>Quantity</legend>
-            <br></br>
-            <label>
-              Go/NoGo
-              <input
-                className="full-edit__number"
-                type="number"
-                name="quantity_gonogo"
-                defaultValue={part.quantity_gonogo}
-                onBlur={handleChange}
-              />
-            </label>
-            <label>
-              Competition
-              <input
-                className="full-edit__number"
-                type="number"
-                name="quantity_competition"
-                defaultValue={part.quantity_competition}
-                onBlur={handleChange}
-              />
-            </label>
-            <label>
-              Available
-              <input
-                className="full-edit__number--available"
-                type="number"
-                name="quantity_available"
-                defaultValue={part.quantity_available}
-                onBlur={handleChange}
-              />
-            </label>
-          </div>
-          <input
-            className="full-edit__save"
-            type="button"
-            value="Save Changes"
-            onClick={() => {
-              updatePart(part);
-              history.goBack();
-            }}
-          />
-          {/* Need to change goBack call so that catalog page refreshes */}
-        </fieldset>
-      </form>
-    </div>
+    <form>
+      <fieldset>
+        <legend className="full-edit__idn">IDN: {part.idn}</legend>
+        <legend>Subsystem</legend>
+        <Select
+          className="full-edit__subsystems"
+          name="subsystem"
+          value={part.subsystem}
+          handleChange={handleChange}
+          optionsList={subsystems.map((subsytem) => subsytem.name)}
+        />
+        {/* Note that this must be a self-closing tag due to React rules.
+         */}
+        <legend>Subassembly</legend>
+        <SubassemblySelect
+          className="full-edit__subassemblies"
+          value={part.subassembly}
+          subassemblies={
+            partSubsystem === undefined ? [] : partSubsystem.subassemblies
+          }
+          handleChange={handleChange}
+        />
+        <legend>Part Name</legend>
+        <input
+          className="full-edit__name"
+          name="name"
+          defaultValue={part.name}
+          onBlur={handleChange}
+        />
+        <legend>Ordering Priority</legend>
+        <OrderingPrioritySelect
+          className="full-edit__dropdown--colored"
+          value={part.ordering_priority}
+          handleChange={handleChange}
+        />
+        <div className="full-edit__quantities">
+          <legend>Quantity</legend>
+          <br></br>
+          <label>
+            Go/NoGo
+            <input
+              className="full-edit__number"
+              type="number"
+              name="quantity_gonogo"
+              defaultValue={part.quantity_gonogo}
+              onBlur={handleChange}
+            />
+          </label>
+          <label>
+            Competition
+            <input
+              className="full-edit__number"
+              type="number"
+              name="quantity_competition"
+              defaultValue={part.quantity_competition}
+              onBlur={handleChange}
+            />
+          </label>
+          <label>
+            Available
+            <input
+              className="full-edit__number--available"
+              type="number"
+              name="quantity_available"
+              defaultValue={part.quantity_available}
+              onBlur={handleChange}
+            />
+          </label>
+        </div>
+        <input
+          className="full-edit__save"
+          type="button"
+          value="Save Changes"
+          onClick={() => {
+            updatePart(part);
+            history.goBack();
+          }}
+        />
+        {/* Need to change goBack call so that catalog page refreshes */}
+      </fieldset>
+    </form>
   );
 }
 
