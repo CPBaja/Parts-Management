@@ -38,7 +38,7 @@ def catalog():
             del query["ordering_priority"]
 
         # print(query) #DEBUG
-        parts = list(Part.collection.find(query))
+        parts = [Part.from_json(part) for part in Part.collection.find(query)]
         for part in parts:
             part["_id"] = str(part["_id"])
         return {"parts": parts}
@@ -46,19 +46,18 @@ def catalog():
 
 @ app.route("/part/<_id>", methods=["GET", "PUT"])
 def catalog_part(_id):
+    part = Part.find_by_id(_id)
+    if part is None:
+        # TODO: Add 404 status code
+        return jsonify(success=False)
+
     if request.method == "GET":
-        part = Part.find_by_id(_id)
-        if part is None:
-            # TODO: Add 404 status code
-            return jsonify(success=False)
         part["_id"] = str(part["_id"])
         return part
+
     if request.method == "PUT":
-        part = Part.find_by_id(_id)
-        if part is None:
-            # TODO: Add 404 status code
-            return jsonify(success=False)
-        part.update(request.get_json())
+        # TODO: Verify json _id matches url _id
+        part = Part.from_json(request.get_json())
         part.save()
         return part
 
