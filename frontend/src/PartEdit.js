@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
-import Select, { SubassemblySelect, OrderingPrioritySelect } from "./Select";
+import { SubassemblySelect, OrderingPrioritySelect } from "./Select";
 import { fetchPart, fetchSubsystems } from "./axios_get";
 import { updatePart } from "./axios_put";
 
@@ -42,15 +42,7 @@ function PartEdit() {
       <fieldset>
         <legend className="full-edit__idn">IDN: {part.idn}</legend>
         <label>Subsystem</label>
-        <Select
-          className="full-edit__subsystems"
-          name="subsystem"
-          value={part.subsystem}
-          handleChange={handleChange}
-          optionsList={subsystems.map((subsytem) => subsytem.name)}
-        />
-        {/* Note that this must be a self-closing tag due to React rules.
-         */}
+        <p>{part.subsystem}</p>
         <label>Subassembly</label>
         <SubassemblySelect
           className="full-edit__subassemblies"
