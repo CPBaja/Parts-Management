@@ -40,7 +40,6 @@ function CatalogEntry(props) {
       () => callback && callback(eventKey)
     );
 
-    const isCurrentEventKey = activeEventKey === eventKey;
     // Option: style
     const priorities = {
       YesterdayPriority: {
