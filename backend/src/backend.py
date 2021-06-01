@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, json, jsonify, request
 from flask_cors import CORS
 
 from model import Model
@@ -26,15 +26,15 @@ def catalog():
 
         # TODO: This should be handled by the Priority class(es)
         # Check if priority is sooner than or equal to value
-        if "ordering_priority" in query and query["ordering_priority"] != "Yesterday":
-            priorities = ["Yesterday",
-                          "This Week",
-                          "This Month",
-                          "This Year",
-                          "Completed"]
+        if "ordering_priority" in query:
+            priorities = ["YesterdayPriority",
+                          "ThisWeekPriority",
+                          "ThisMonthPriority",
+                          "ThisYearPriority",
+                          "CompletedPriority"]
             query.update({"$or":
-                          [{"ordering_priority": priorities[i]}
-                           for i in range(priorities.index(query["ordering_priority"]) + 1)]})
+                          [{"ordering_priority": {"_type": priorities[i]}}
+                           for i in range(priorities.index(json.loads(query["ordering_priority"])["_type"]) + 1)]})
             del query["ordering_priority"]
 
         # print(query)  # DEBUG
