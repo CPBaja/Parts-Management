@@ -10,7 +10,6 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Badge from "react-bootstrap/Badge";
 import { useAccordionButton } from "react-bootstrap/AccordionButton";
-import AccordionContext from "react-bootstrap/AccordionContext";
 import Accordion from "react-bootstrap/Accordion";
 import ListGroup from "react-bootstrap/ListGroup";
 
@@ -33,8 +32,6 @@ function CatalogEntry(props) {
   }
 
   function CatalogEntryToggle({ eventKey, callback }) {
-    const { activeEventKey } = useContext(AccordionContext);
-
     const decoratedOnClick = useAccordionButton(
       eventKey,
       () => callback && callback(eventKey)
