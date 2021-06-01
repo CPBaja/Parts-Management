@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { OrderingPrioritySelect, SubassemblySelect } from "./Select";
 import { updatePart } from "./axios_put";
 import { serializeType } from "./json_type";
