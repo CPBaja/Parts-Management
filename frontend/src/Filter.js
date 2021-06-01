@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import Select, { SubassemblySelect, OrderingPrioritySelect } from "./Select";
 import { fetchParts } from "./axios_get";
+import { serializeType } from "./json_type";
 
 function Filter(props) {
   const history = useHistory();
@@ -10,14 +11,16 @@ function Filter(props) {
 
   const [filters, setFilters] = useState(params);
   const [subassembly, setSubassembly] = useState();
-  const [orderingPriority, setOrderingPriority] = useState("Completed");
+  const [orderingPriority, setOrderingPriority] = useState({
+    _type: "CompletedPriority",
+  });
 
   const subsystem = props.subsystems.find((_) => _.name === params.subsystem);
   const subsystems = ["", ...props.subsystems.map((_) => _.name)];
 
   function handleChange(event) {
     const name = event.target.name;
-    const value = event.target.value;
+    let value = event.target.value;
     switch (name) {
       case "subsystem":
         history.push(match.url + "/" + value);
@@ -26,6 +29,7 @@ function Filter(props) {
         setSubassembly(value);
         break;
       case "ordering_priority":
+        value = serializeType("Priority", value);
         setOrderingPriority(value);
         break;
       case "name":

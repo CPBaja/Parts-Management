@@ -2,16 +2,23 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { OrderingPrioritySelect, SubassemblySelect } from "./Select";
 import { updatePart } from "./axios_put";
+import { serializeType } from "./json_type";
 
 function CatalogEntry(props) {
   const [part, setPart] = useState(props.part);
 
   function handleChange(event) {
     const name = event.target.name;
-    const value =
-      event.target.type === "number"
-        ? parseInt(event.target.value)
-        : event.target.value;
+    let value = event.target.value;
+
+    if (name === "ordering_priority") {
+      value = serializeType("Priority", value);
+    }
+
+    if (event.target.type === "number") {
+      value = parseInt(event.target.value);
+    }
+
     setPart({ ...part, [name]: value });
   }
 
