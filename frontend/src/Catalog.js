@@ -1,6 +1,10 @@
+// React
 import React from "react";
+
+// Local
 import CatalogEntry from "./CatalogEntry";
 
+// Bootstrap
 import Card from "react-bootstrap/Card";
 import Accordion from "react-bootstrap/Accordion";
 

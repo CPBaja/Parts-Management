@@ -1,16 +1,20 @@
-import { Link } from "react-router-dom";
+// React
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+// Local
 import { OrderingPrioritySelect, SubassemblySelect } from "./Select";
 import { updatePart } from "./axios_put";
 import { serializeType } from "./json_type";
 
+// Bootstrap
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Badge from "react-bootstrap/Badge";
-import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import Accordion from "react-bootstrap/Accordion";
+import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import ListGroup from "react-bootstrap/ListGroup";
 
 function CatalogEntry(props) {
@@ -104,9 +108,7 @@ function CatalogEntry(props) {
   return (
     <Card border="0">
       <Card.Header className="pb-0 pl-0 pr-0 pt-1">
-        <CatalogEntryToggle eventKey={props.eventKey}>
-          Click me!
-        </CatalogEntryToggle>
+        <CatalogEntryToggle eventKey={props.eventKey} />
       </Card.Header>
       <Accordion.Collapse eventKey={props.eventKey}>
         <Card body border="dark" className="px-2">

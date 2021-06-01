@@ -1,5 +1,8 @@
+// React
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+
+// Local
 import Catalog from "./Catalog";
 import Filter from "./Filter";
 import PartEdit from "./PartEdit";
@@ -15,10 +18,10 @@ function App() {
     <Router>
       <Container>
         <h1>Parts Management</h1>
-        <Route exact path="/" component={WelcomePage} />
-        <Route path="/catalog" component={CatalogPage} />
-        <Route path="/part" component={PartEditPage} />
       </Container>
+      <Route exact path="/" component={WelcomePage} />
+      <Route path="/catalog" component={CatalogPage} />
+      <Route path="/part" component={PartEditPage} />
     </Router>
   );
 }
@@ -54,9 +57,9 @@ function CatalogPage() {
 
 function PartEditPage() {
   return (
-    <div className="container">
+    <Container>
       <PartEdit />
-    </div>
+    </Container>
   );
 }
 
