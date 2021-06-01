@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, redirect, request
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 from model import Model
@@ -11,7 +11,7 @@ CORS(app)
 
 @app.route("/", methods=["GET"])
 def home_page():
-    return redirect("http://localhost:3000/catalog")
+    return {}
 
 
 @app.route("/catalog/", methods=["GET"])
@@ -37,7 +37,8 @@ def catalog():
                            for i in range(priorities.index(query["ordering_priority"]) + 1)]})
             del query["ordering_priority"]
 
-        # print(query) #DEBUG
+        # print(query)  # DEBUG
+        # TODO: Handle unsuccessful from_json()
         parts = [Part.from_json(part) for part in Part.collection.find(query)]
         return {"parts": parts}
 
@@ -54,6 +55,7 @@ def catalog_part(_id):
 
     if request.method == "PUT":
         # TODO: Verify json _id matches url _id
+        # TODO: Handle unsuccessful from_json()
         part = Part.from_json(request.get_json())
         part.save()
         return part
@@ -62,7 +64,7 @@ def catalog_part(_id):
 @ app.route("/subsystems/", methods=["GET"])
 def subsystems():
     if request.method == "GET":
-        # TODO Ideally should not do it like this
+        # TODO Create subsystem class and call from_json()
         subsystems = list(Model.client.parts.subsystems.find())
         for subsystem in subsystems:
             subsystem["_id"] = str(subsystem["_id"])
