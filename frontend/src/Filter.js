@@ -1,10 +1,13 @@
+// React
 import React, { useState, useEffect } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
+
+// Local
 import Select, { SubassemblySelect, OrderingPrioritySelect } from "./Select";
 import { fetchParts } from "./axios_get";
 import { serializeType } from "./json_type";
 
-// Bootstrap Elements
+// Bootstrap
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
