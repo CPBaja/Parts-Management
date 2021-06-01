@@ -1,10 +1,14 @@
+from model import Model
 
-class Stock:
+
+class Stock(Model):
     """
-    An abstract stock.
+    An abstract stock. Extends Model.
     """
 
     def __init__(self, material, quantity, length):
+        super().__init__()
+        self._type = type(self).__name__
         self.material = material
         self.quantity = quantity
         self.length = length
@@ -16,7 +20,7 @@ class Sheet(Stock):
     """
 
     def __init__(self, material, quantity, length, width, thickness):
-        super().init(material, quantity, length)
+        super().__init__(material, quantity, length)
         self.width = width
         self.thickness = thickness
 
@@ -27,7 +31,7 @@ class Plate(Stock):
     """
 
     def __init__(self, material, quantity, length, width, thickness):
-        super().init(material, quantity, length)
+        super().__init__(material, quantity, length)
         self.width = width
         self.thickness = thickness
 
@@ -38,7 +42,7 @@ class BarStock(Stock):
     """
 
     def __init__(self, material, quantity, length, width, height):
-        super().init(material, quantity, length)
+        super().__init__(material, quantity, length)
         self.width = width
         self.height = height
 
@@ -49,7 +53,7 @@ class RoundStock(Stock):
     """
 
     def __init__(self, material, quantity, length, diameter):
-        super().init(material, quantity, length)
+        super().__init__(material, quantity, length)
         self.diameter = diameter
 
 
@@ -60,7 +64,7 @@ class RectTubeStock(Stock):
 
     def __init__(self, material, quantity, length,
                  outer_width, outer_height, wall_thickness):
-        super().init(material, quantity, length)
+        super().__init__(material, quantity, length)
         self.outer_width = outer_width
         self.outer_height = outer_height
         self.wall_thickness = wall_thickness
@@ -73,6 +77,6 @@ class RoundTubeStock(Stock):
 
     def __init__(self, material, quantity, length,
                  outer_diameter, wall_thickness):
-        super().init(material, quantity, length)
+        super().__init__(material, quantity, length)
         self.outer_diameter = outer_diameter
         self.wall_thickness = wall_thickness

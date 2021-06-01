@@ -11,9 +11,9 @@ def get_mongo_client():
 
 class Model(dict):
     """
-    An abstract model. Wraps a dict.
+    An abstract model. Extends dict.
     Implements a method of saving, reloading, and deleting documents to/in/from
-    a Mongo DB.
+    MongoDB.
     """
     __getattr__ = dict.get
     __delattr__ = dict.__delitem__
@@ -24,7 +24,7 @@ class Model(dict):
 
     def save(self):
         """
-        Insert or update a model into/in the Mongo DB collection.
+        Insert or update model into/in the MongoDB collection.
         If not in the collection, create an _id upon insertion.
         """
         if not self._id:
@@ -49,7 +49,7 @@ class Model(dict):
 
     def delete(self):
         """
-        Delete self (if it exists) from the Mongo DB collection.
+        Delete self (if it exists) from the MongoDB collection.
         Returns a DeleteResult object from the server.
         """
         if self._id:
@@ -58,3 +58,52 @@ class Model(dict):
                 self.clear()
             return resp
         return None
+
+    @classmethod
+    def get_subclasses(cls):
+        """
+        Get all (direct and indirect) subclasses recursively.
+        Returns a dictionary of subclasses:
+        -  key  | the subclass name (string)
+        - value | the subclass (Python class)
+        """
+        subclasses = {}
+        for subclass in cls.__subclasses__():
+            # Add the subclass to the dict
+            subclasses[subclass.__name__] = subclass
+            # Add its subclasses to the dict (recursive)
+            subclasses.update(subclass.get_subclasses())
+        return subclasses
+
+    @classmethod
+    def from_json(cls, json):
+        """
+        Create an object from a json.
+        Sets its typed attributes to objects recursively.
+        Returns the object.
+        """
+        # Use "_type" attribute to determine object type
+        # Use other attributes as constructor parameters
+        args = json.copy()
+        args.pop("_type")
+        obj = cls.get_subclasses().get(json["_type"], cls)(**args)
+
+        # Replace typed attributes with objects (recursive)
+        for attr in obj:
+            if type(json[attr]) == dict and "_type" in json[attr]:
+                obj[attr] = Model.from_json(json[attr])
+
+        # Replace MongoDB ObjectId (if it exists) with string
+        if "_id" in obj:
+            obj["_id"] = str(obj["_id"])
+
+        return obj
+
+    @classmethod
+    def find_by_id(cls, _id):
+        """
+        Find an object by id.
+        Returns the object.
+        """
+        jsons = list(cls.collection.find({"_id": ObjectId(_id)}))
+        return cls.from_json(jsons[0]) if len(jsons) > 0 else None

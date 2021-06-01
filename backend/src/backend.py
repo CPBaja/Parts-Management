@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, redirect, request
+from flask import Flask, json, jsonify, request
 from flask_cors import CORS
 
 from model import Model
@@ -11,7 +11,7 @@ CORS(app)
 
 @app.route("/", methods=["GET"])
 def home_page():
-    return redirect("http://localhost:3000/catalog")
+    return {}
 
 
 @app.route("/catalog/", methods=["GET"])
@@ -26,39 +26,37 @@ def catalog():
 
         # TODO: This should be handled by the Priority class(es)
         # Check if priority is sooner than or equal to value
-        if "ordering_priority" in query and query["ordering_priority"] != "Yesterday":
-            priorities = ["Yesterday",
-                          "This Week",
-                          "This Month",
-                          "This Year",
-                          "Completed"]
+        if "ordering_priority" in query:
+            priorities = ["YesterdayPriority",
+                          "ThisWeekPriority",
+                          "ThisMonthPriority",
+                          "ThisYearPriority",
+                          "CompletedPriority"]
             query.update({"$or":
-                          [{"ordering_priority": priorities[i]}
-                           for i in range(priorities.index(query["ordering_priority"]) + 1)]})
+                          [{"ordering_priority": {"_type": priorities[i]}}
+                           for i in range(priorities.index(json.loads(query["ordering_priority"])["_type"]) + 1)]})
             del query["ordering_priority"]
 
-        # print(query) #DEBUG
-        parts = list(Part.collection.find(query))
-        for part in parts:
-            part["_id"] = str(part["_id"])
+        # print(query)  # DEBUG
+        # TODO: Handle unsuccessful from_json()
+        parts = [Part.from_json(part) for part in Part.collection.find(query)]
         return {"parts": parts}
 
 
 @ app.route("/part/<_id>", methods=["GET", "PUT"])
 def catalog_part(_id):
+    part = Part.find_by_id(_id)
+    if part is None:
+        # TODO: Add 404 status code
+        return jsonify(success=False)
+
     if request.method == "GET":
-        part = Part.find_by_id(_id)
-        if part is None:
-            # TODO: Add 404 status code
-            return jsonify(success=False)
-        part["_id"] = str(part["_id"])
         return part
+
     if request.method == "PUT":
-        part = Part.find_by_id(_id)
-        if part is None:
-            # TODO: Add 404 status code
-            return jsonify(success=False)
-        part.update(request.get_json())
+        # TODO: Verify json _id matches url _id
+        # TODO: Handle unsuccessful from_json()
+        part = Part.from_json(request.get_json())
         part.save()
         return part
 
@@ -66,7 +64,7 @@ def catalog_part(_id):
 @ app.route("/subsystems/", methods=["GET"])
 def subsystems():
     if request.method == "GET":
-        # TODO Ideally should not do it like this
+        # TODO Create subsystem class and call from_json()
         subsystems = list(Model.client.parts.subsystems.find())
         for subsystem in subsystems:
             subsystem["_id"] = str(subsystem["_id"])

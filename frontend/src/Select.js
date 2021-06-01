@@ -1,4 +1,5 @@
 import React from "react";
+import { parseType } from "./json_type.js";
 
 function Select(props) {
   const optionsList = props.optionsList.map((row, index) => (
@@ -30,6 +31,8 @@ function SubassemblySelect(props) {
 }
 
 function OrderingPrioritySelect(props) {
+  const value = parseType("Priority", props.value._type);
+
   // Option: style
   const priorities = {
     Yesterday: {
@@ -58,10 +61,10 @@ function OrderingPrioritySelect(props) {
     <Select
       className={props.className}
       name="ordering_priority"
-      value={props.value}
+      value={value}
       handleChange={props.handleChange}
       optionsList={Object.keys(priorities)}
-      style={priorities[props.value]}
+      style={priorities[value]}
     />
   );
 }
