@@ -28,6 +28,7 @@ class Part(Model):
         self.vendor_cost = 0
         self.vendor_link = ""
         self.notes = ""
+        self.idn = ""
 
         # Overwrite attributes from kwargs at the end
         self.update(kwargs)
