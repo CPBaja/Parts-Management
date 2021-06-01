@@ -1,6 +1,5 @@
 // React
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
 // Local
 import { OrderingPrioritySelect, SubassemblySelect } from "./Select";
@@ -16,6 +15,7 @@ import Badge from "react-bootstrap/Badge";
 import Accordion from "react-bootstrap/Accordion";
 import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import ListGroup from "react-bootstrap/ListGroup";
+import Button from "react-bootstrap/Button";
 
 function CatalogEntry(props) {
   const [part, setPart] = useState(props.part);
@@ -189,15 +189,15 @@ function CatalogEntry(props) {
                 </Row>
               </Col>
             </Row>
-            <input
+            <Button
+              variant="success"
               className="catalog-entry__save"
-              type="button"
-              value="Save Changes"
-              onClick={() => updatePart(part)}
-            />
-            <Link to={"/part/" + part._id}>
-              <button type="button">Edit Part</button>
-            </Link>
+              onClick={() => updatePart(part)}>
+              Save Change
+            </Button>{" "}
+            <Button variant="primary" href={"/part/" + part._id}>
+              Edit Part
+            </Button>
           </Form>
         </Card>
       </Accordion.Collapse>
