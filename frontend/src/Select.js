@@ -35,7 +35,7 @@ function SubassemblySelect(props) {
 }
 
 function OrderingPrioritySelect(props) {
-  const value = parseType("Priority", props.value._type);
+  const value = props.value ? parseType("Priority", props.value._type) : "";
 
   // Option: style
   const priorities = {

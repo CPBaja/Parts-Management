@@ -3,6 +3,7 @@ import { useHistory, useRouteMatch } from "react-router-dom";
 import { SubassemblySelect, OrderingPrioritySelect } from "./Select";
 import { fetchPart, fetchSubsystems } from "./axios_get";
 import { updatePart } from "./axios_put";
+import { serializeType } from "./json_type";
 
 function PartEdit() {
   const history = useHistory();
@@ -14,10 +15,17 @@ function PartEdit() {
 
   function handleChange(event) {
     const name = event.target.name;
-    const value =
-      event.target.type === "number"
-        ? parseInt(event.target.value)
-        : event.target.value;
+    let value = event.target.value;
+
+    if (name === "ordering_priority") {
+      value = serializeType("Priority", value);
+    }
+
+    if (event.target.type === "number") {
+      console.log("made it here");
+      value = parseInt(event.target.value);
+    }
+
     setPart({ ...part, [name]: value });
   }
 
@@ -75,7 +83,7 @@ function PartEdit() {
               type="number"
               name="quantity_gonogo"
               defaultValue={part.quantity_gonogo}
-              onBlur={handleChange}
+              onChange={handleChange}
             />
           </label>
           <label>
@@ -85,7 +93,7 @@ function PartEdit() {
               type="number"
               name="quantity_competition"
               defaultValue={part.quantity_competition}
-              onBlur={handleChange}
+              onChange={handleChange}
             />
           </label>
           <label>
@@ -95,7 +103,7 @@ function PartEdit() {
               type="number"
               name="quantity_available"
               defaultValue={part.quantity_available}
-              onBlur={handleChange}
+              onChange={handleChange}
             />
           </label>
         </div>
