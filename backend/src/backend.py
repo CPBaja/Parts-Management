@@ -21,15 +21,18 @@ def catalog():
 
         # Check if names contain the search entry (case insensitive)
         if "name" in query:
-            query["name"] = {'$regex': ".*" +
-                             query["name"] + ".*", '$options': 'i'}
+            query["name"] = \
+                {"$regex": ".*" + query["name"] + ".*", "$options": "i"}
 
         # TODO: This should be handled by the Priority class(es)
         # Check if priority is sooner than or equal to value
         if "ordering_priority" in query and query["ordering_priority"] != "Yesterday":
-            priorities = ["Yesterday", "This Week",
-                          "This Month", "This Year", "Completed"]
-            query.update({'$or':
+            priorities = ["Yesterday",
+                          "This Week",
+                          "This Month",
+                          "This Year",
+                          "Completed"]
+            query.update({"$or":
                           [{"ordering_priority": priorities[i]}
                            for i in range(priorities.index(query["ordering_priority"]) + 1)]})
             del query["ordering_priority"]
