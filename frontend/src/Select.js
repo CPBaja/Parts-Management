@@ -1,5 +1,10 @@
+// React
 import React from "react";
+
+// Local
 import { parseType } from "./json_type.js";
+
+// Bootstrap
 import Form from "react-bootstrap/Form";
 
 function Select(props) {
