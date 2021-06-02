@@ -14,7 +14,7 @@ class Stock(Model):
         self.length = length
 
 
-class Sheet(Stock):
+class SheetStock(Stock):
     """
     A sheet stock. Extends Stock.
     """
@@ -25,7 +25,7 @@ class Sheet(Stock):
         self.thickness = thickness
 
 
-class Plate(Stock):
+class PlateStock(Stock):
     """
     A plate stock. Extends Stock.
     """
