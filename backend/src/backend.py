@@ -44,7 +44,7 @@ def catalog():
 
 
 @ app.route("/part/<_id>", methods=["GET", "PUT"])
-def catalog_part(_id):
+def part(_id):
     part = Part.find_by_id(_id)
     if part is None:
         # TODO: Add 404 status code
