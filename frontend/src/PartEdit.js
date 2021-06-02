@@ -4,7 +4,11 @@ import { useRouteMatch } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 // Local
-import { SubassemblySelect, OrderingPrioritySelect } from "./Select";
+import {
+  SubassemblySelect,
+  OrderingPrioritySelect,
+  OrderingStatusSelect,
+} from "./Select";
 import { fetchPart } from "./axios_get";
 import { updatePart } from "./axios_put";
 import { serializeType } from "./json_type";
@@ -28,8 +32,15 @@ function PartEdit(props) {
     const name = event.target.name;
     let value = event.target.value;
 
-    if (name === "ordering_priority") {
-      value = serializeType("Priority", value);
+    switch (name) {
+      case "ordering_priority":
+        value = serializeType("Priority", value);
+        break;
+      case "ordering_status":
+        value = serializeType("Status", value);
+        break;
+      default:
+        break;
     }
 
     if (event.target.type === "number") {
@@ -92,6 +103,7 @@ function PartEdit(props) {
               />
             </Col>
           </Form.Group>
+
           <Form.Group as={Row}>
             <Form.Label column sm={2}>
               Ordering Priority
@@ -100,6 +112,19 @@ function PartEdit(props) {
               <OrderingPrioritySelect
                 className="full-edit__dropdown--colored"
                 value={part.ordering_priority}
+                handleChange={handleChange}
+              />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row}>
+            <Form.Label column sm={2}>
+              Ordering Status
+            </Form.Label>
+            <Col sm={3}>
+              <OrderingStatusSelect
+                className="full-edit__dropdown--colored"
+                value={part.ordering_status}
                 handleChange={handleChange}
               />
             </Col>
