@@ -1,0 +1,19 @@
+{
+  "name": "parts-management",
+  "version": "1.0.0",
+  "description": "Baja Parts Management application",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CPBaja/Parts-Management.git"
+  },
+  "author": "Tyler Olson, Rahul Goyal, and Ian Gallagher",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CPBaja/Parts-Management/issues"
+  },
+  "homepage": "https://github.com/CPBaja/Parts-Management#readme"
+}
