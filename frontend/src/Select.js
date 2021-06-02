@@ -66,7 +66,6 @@ function OrderingPrioritySelect(props) {
     },
   };
 
-  // TODO: turn this into a pill :O
   return (
     <Select
       size="sm"
@@ -80,4 +79,49 @@ function OrderingPrioritySelect(props) {
   );
 }
 
-export { Select as default, SubassemblySelect, OrderingPrioritySelect };
+function OrderingStatusSelect(props) {
+  const value = props.value ? parseType("Status", props.value._type) : "";
+
+  // Option: style
+  const statuses = {
+    "To Do": {
+      color: "#800000",
+      backgroundColor: "#ffc0c0",
+    },
+    Ordered: {
+      color: "#800000",
+      backgroundColor: "#ffc080",
+    },
+    Shipped: {
+      color: "#404000",
+      backgroundColor: "#ffffc0",
+    },
+    Arrived: {
+      color: "#004000",
+      backgroundColor: "#c0ffc0",
+    },
+    Abandoned: {
+      color: "#404040",
+      backgroundColor: "#c0c0c0",
+    },
+  };
+
+  return (
+    <Select
+      size="sm"
+      className={props.className}
+      name="ordering_status"
+      value={value}
+      handleChange={props.handleChange}
+      optionsList={Object.keys(statuses)}
+      style={statuses[value]}
+    />
+  );
+}
+
+export {
+  Select as default,
+  SubassemblySelect,
+  OrderingPrioritySelect,
+  OrderingStatusSelect,
+};

@@ -38,6 +38,33 @@ class DoneStatus(Status):
         super().__init__()
 
 
+class OrderedStatus(Status):
+    """
+    An ordered status. Extends Status.
+    """
+
+    def __init__(self):
+        super().__init__()
+
+
+class ShippedStatus(Status):
+    """
+    A shipped status. Extends Status.
+    """
+
+    def __init__(self):
+        super().__init__()
+
+
+class ArrivedStatus(Status):
+    """
+    An arrived status. Extends Status.
+    """
+
+    def __init__(self):
+        super().__init__()
+
+
 class AbandonedStatus(Status):
     """
     An abandoned status. Extends Status.

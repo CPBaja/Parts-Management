@@ -4,7 +4,11 @@ import { useRouteMatch } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 // Local
-import { SubassemblySelect, OrderingPrioritySelect } from "./Select";
+import {
+  SubassemblySelect,
+  OrderingPrioritySelect,
+  OrderingStatusSelect,
+} from "./Select";
 import { fetchPart } from "./axios_get";
 import { updatePart } from "./axios_put";
 import { serializeType } from "./json_type";
@@ -28,12 +32,23 @@ function PartEdit(props) {
     const name = event.target.name;
     let value = event.target.value;
 
-    if (name === "ordering_priority") {
-      value = serializeType("Priority", value);
+    switch (name) {
+      case "ordering_priority":
+        value = serializeType("Priority", value);
+        break;
+      case "ordering_status":
+        value = serializeType("Status", value);
+        break;
+      default:
+        break;
     }
 
     if (event.target.type === "number") {
-      value = parseInt(event.target.value);
+      if (name === "vendor_cost") {
+        value = parseFloat(event.target.value);
+      } else {
+        value = parseInt(event.target.value);
+      }
     }
 
     setPart({ ...part, [name]: value });
@@ -63,6 +78,7 @@ function PartEdit(props) {
               <p>{part.subsystem}</p>
             </Col>
           </Form.Group>
+
           <Form.Group as={Row}>
             <Form.Label column sm={2}>
               Subassembly
@@ -78,6 +94,7 @@ function PartEdit(props) {
               />
             </Col>
           </Form.Group>
+
           <Form.Group as={Row}>
             <Form.Label column sm={2}>
               Part Name
@@ -85,13 +102,14 @@ function PartEdit(props) {
             <Col sm={3}>
               <Form.Control
                 size="sm"
-                className="catalog-entry__name"
+                className="full-edit__name"
                 name="name"
                 defaultValue={part.name}
                 onBlur={handleChange}
               />
             </Col>
           </Form.Group>
+
           <Form.Group as={Row}>
             <Form.Label column sm={2}>
               Ordering Priority
@@ -107,6 +125,19 @@ function PartEdit(props) {
 
           <Form.Group as={Row}>
             <Form.Label column sm={2}>
+              Ordering Status
+            </Form.Label>
+            <Col sm={3}>
+              <OrderingStatusSelect
+                className="full-edit__dropdown--colored"
+                value={part.ordering_status}
+                handleChange={handleChange}
+              />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row}>
+            <Form.Label column sm={2}>
               Quantities
             </Form.Label>
             <Col sm={3}>
@@ -115,7 +146,7 @@ function PartEdit(props) {
                   <Form.Group>
                     <Form.Label>Go/NoGo</Form.Label>
                     <Form.Control
-                      className="catalog-entry__number"
+                      className="full-edit__number"
                       type="number"
                       name="quantity_gonogo"
                       defaultValue={part.quantity_gonogo}
@@ -127,7 +158,7 @@ function PartEdit(props) {
                   <Form.Group>
                     <Form.Label>Competition</Form.Label>
                     <Form.Control
-                      className="catalog-entry__number"
+                      className="full-edit__number"
                       type="number"
                       name="quantity_competition"
                       defaultValue={part.quantity_competition}
@@ -139,7 +170,7 @@ function PartEdit(props) {
                   <Form.Group>
                     <Form.Label>Available</Form.Label>
                     <Form.Control
-                      className="catalog-entry__number catalog-entry__number--available"
+                      className="full-edit__number--available"
                       type="number"
                       name="quantity_available"
                       defaultValue={part.quantity_available}
@@ -150,6 +181,46 @@ function PartEdit(props) {
               </Row>
             </Col>
           </Form.Group>
+
+          <Form.Group className="mt-2" as={Row}>
+            <Form.Label column sm={2}>
+              Vendor
+            </Form.Label>
+            <Col>
+              <Row>
+                <Col sm={8}>
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control
+                    className="full-edit__vendor_name"
+                    name="vendor"
+                    defaultValue={part.vendor}
+                    onChange={handleChange}
+                  />
+                </Col>
+                <Col sm={4}>
+                  <Form.Label>Cost</Form.Label>
+                  <Form.Control
+                    className="full-edit__vendor"
+                    type="number"
+                    step="0.01"
+                    name="vendor_cost"
+                    defaultValue={part.vendor_cost}
+                    onChange={handleChange}
+                  />
+                </Col>
+                <Col sm={8}>
+                  <Form.Label>Link</Form.Label>
+                  <Form.Control
+                    className="full-edit__vendor_link"
+                    name="vendor_link"
+                    defaultValue={part.vendor_link}
+                    onChange={handleChange}
+                  />
+                </Col>
+              </Row>
+            </Col>
+          </Form.Group>
+
           <Button
             className="full-edit__save"
             onClick={() => {
