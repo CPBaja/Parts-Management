@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 // Local
 import { SubassemblySelect, OrderingPrioritySelect } from "./Select";
-import { fetchPart, fetchSubsystems } from "./axios_get";
+import { fetchPart } from "./axios_get";
 import { updatePart } from "./axios_put";
 import { serializeType } from "./json_type";
 
@@ -16,13 +16,13 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 
-function PartEdit() {
+function PartEdit(props) {
   const history = useHistory();
   const match = useRouteMatch();
   const params = useRouteMatch(match.url + "/:_id?").params;
 
   const [part, setPart] = useState({});
-  const [subsystems, setSubsystems] = useState([]);
+  const subsystems = props.subsystems;
 
   function handleChange(event) {
     const name = event.target.name;
@@ -44,12 +44,6 @@ function PartEdit() {
       if (result) setPart(result);
     });
   }, [params._id]);
-
-  useEffect(() => {
-    fetchSubsystems().then((result) => {
-      if (result) setSubsystems(result);
-    });
-  }, []);
 
   const partSubsystem = subsystems.find(
     (subsystem) => subsystem.name === part.subsystem
