@@ -102,7 +102,7 @@ function PartEdit(props) {
             <Col sm={3}>
               <Form.Control
                 size="sm"
-                className="catalog-entry__name"
+                className="full-edit__name"
                 name="name"
                 defaultValue={part.name}
                 onBlur={handleChange}
@@ -146,7 +146,7 @@ function PartEdit(props) {
                   <Form.Group>
                     <Form.Label>Go/NoGo</Form.Label>
                     <Form.Control
-                      className="catalog-entry__number"
+                      className="full-edit__number"
                       type="number"
                       name="quantity_gonogo"
                       defaultValue={part.quantity_gonogo}
@@ -158,7 +158,7 @@ function PartEdit(props) {
                   <Form.Group>
                     <Form.Label>Competition</Form.Label>
                     <Form.Control
-                      className="catalog-entry__number"
+                      className="full-edit__number"
                       type="number"
                       name="quantity_competition"
                       defaultValue={part.quantity_competition}
@@ -170,7 +170,7 @@ function PartEdit(props) {
                   <Form.Group>
                     <Form.Label>Available</Form.Label>
                     <Form.Control
-                      className="full-edit__number full-edit__number--available"
+                      className="full-edit__number--available"
                       type="number"
                       name="quantity_available"
                       defaultValue={part.quantity_available}
