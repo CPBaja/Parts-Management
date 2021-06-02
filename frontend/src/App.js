@@ -1,15 +1,24 @@
+// React
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+
+// Local
 import Catalog from "./Catalog";
 import Filter from "./Filter";
 import PartEdit from "./PartEdit";
 import { fetchSubsystems } from "./axios_get";
 
+// Bootstrap elements
+import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
+
 function App() {
   /* Page naming convention: ____Page */
   return (
     <Router>
-      <h1 className="container">Parts Management</h1>
+      <Container>
+        <h1>Parts Management</h1>
+      </Container>
       <Route exact path="/" component={WelcomePage} />
       <Route path="/catalog" component={CatalogPage} />
       <Route path="/part" component={PartEditPage} />
@@ -19,9 +28,12 @@ function App() {
 
 function WelcomePage() {
   return (
-    <div className="container">
-      Welcome! Click <Link to="/catalog">here</Link> to go to the catalog.
-    </div>
+    <Container fluid className="text-sm-center p-5 bg-light">
+      <p class="lead">
+        Welcome! Click <Link to="/catalog">here</Link> to go to the catalog.
+      </p>
+      <Button>Login</Button>
+    </Container>
   );
 }
 
@@ -36,18 +48,18 @@ function CatalogPage() {
   }, []);
 
   return (
-    <div className="container">
+    <Container>
       <Filter setParts={setParts} subsystems={subsystems} />
       <Catalog parts={parts} subsystems={subsystems} />
-    </div>
+    </Container>
   );
 }
 
 function PartEditPage() {
   return (
-    <div className="container">
+    <Container>
       <PartEdit />
-    </div>
+    </Container>
   );
 }
 
