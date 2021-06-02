@@ -11,7 +11,7 @@ Below is a UML Use Case diagram representing major project functions.  `<<extend
 
 ### Class Diagram
 
-Below is a UML Class diagram of the backend 
+Below is a UML Class diagram of the backend model.
 
 ![Image](ClassDiagram.png)
 
