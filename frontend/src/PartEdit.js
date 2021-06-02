@@ -1,7 +1,7 @@
 // React
 import React, { useEffect, useState } from "react";
 import { useRouteMatch } from "react-router-dom";
-// import { useHistory } from "react-router-dom";  <== Commented out since useHistory is failing
+import { useHistory } from "react-router-dom";
 
 // Local
 import { SubassemblySelect, OrderingPrioritySelect } from "./Select";
@@ -17,7 +17,7 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 
 function PartEdit() {
-  // const history = useHistory();  <== Commented out since useHistory is failing
+  const history = useHistory();
   const match = useRouteMatch();
   const params = useRouteMatch(match.url + "/:_id?").params;
 
@@ -159,10 +159,13 @@ function PartEdit() {
           <Button
             className="full-edit__save"
             onClick={() => {
-              console.log(part);
               updatePart(part);
-              // TODO: Need to change goBack call so that catalog page refreshes.  It is currently broken.
-              //history.goBack();
+              history.push(
+                history.location.state === undefined ||
+                  history.location.state.catalog === undefined
+                  ? "/catalog"
+                  : history.location.state.catalog
+              );
             }}>
             Save Changes
           </Button>

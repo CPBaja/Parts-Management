@@ -1,5 +1,6 @@
 // React
 import React, { useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 
 // Local
 import { OrderingPrioritySelect, SubassemblySelect } from "./Select";
@@ -18,7 +19,15 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 
 function CatalogEntry(props) {
+  const [oldPart, setOldPart] = useState(props.part);
   const [part, setPart] = useState(props.part);
+  const history = useHistory();
+  const location = useLocation();
+
+  if (props.part !== oldPart) {
+    setOldPart(props.part);
+    setPart(props.part);
+  }
 
   function handleChange(event) {
     const name = event.target.name;
@@ -195,7 +204,14 @@ function CatalogEntry(props) {
               onClick={() => updatePart(part)}>
               Save Change
             </Button>{" "}
-            <Button variant="primary" href={"/part/" + part._id}>
+            <Button
+              variant="primary"
+              onClick={() =>
+                history.push({
+                  pathname: "/part/" + part._id,
+                  state: { catalog: location.pathname },
+                })
+              }>
               Edit Part
             </Button>
           </Form>
