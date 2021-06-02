@@ -2,6 +2,12 @@
 
 [![CP Baja Parts-Management CI](https://github.com/CPBaja/Parts-Management/actions/workflows/test.yml/badge.svg?branch=develop)](https://github.com/CPBaja/Parts-Management/actions/workflows/test.yml)
 
+## Overview
+
+This repository contains the Parts Management software for Cal Poly's Baja SAE team. It features a user-friendly UI for team members to add, edit, and monitor the parts they need to purchase or manufacture for the Baja car. The software holds information about a part's subsystem, subassembly, status, priority, stock, cad, and much more. This software is currently in alpha and unreleased.
+
+Click [here](https://app.diagrams.net/#G1WEWmdwzENLEppVEkaEy2EwxNCejGHRiK) to view the UI prototype.
+
 ## Style Checking
 
 ### PyCodeStyle and PyLint for Python
