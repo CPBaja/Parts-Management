@@ -14,14 +14,28 @@ import Button from "react-bootstrap/Button";
 
 function App() {
   /* Page naming convention: ____Page */
+  const [subsystems, setSubsystems] = useState([]);
+
+  useEffect(() => {
+    fetchSubsystems().then((result) => {
+      if (result) setSubsystems(result);
+    });
+  }, []);
+
   return (
     <Router>
       <Container>
         <h1>Parts Management</h1>
       </Container>
       <Route exact path="/" component={WelcomePage} />
-      <Route path="/catalog" component={CatalogPage} />
-      <Route path="/part" component={PartEditPage} />
+      <Route
+        path="/catalog"
+        render={() => <CatalogPage subsystems={subsystems} />}
+      />
+      <Route
+        path="/part"
+        render={() => <PartEditPage subsystems={subsystems} />}
+      />
     </Router>
   );
 }
@@ -37,28 +51,21 @@ function WelcomePage() {
   );
 }
 
-function CatalogPage() {
+function CatalogPage(props) {
   const [parts, setParts] = useState([]);
-  const [subsystems, setSubsystems] = useState([]);
-
-  useEffect(() => {
-    fetchSubsystems().then((result) => {
-      if (result) setSubsystems(result);
-    });
-  }, []);
 
   return (
     <Container>
-      <Filter setParts={setParts} subsystems={subsystems} />
-      <Catalog parts={parts} subsystems={subsystems} />
+      <Filter setParts={setParts} subsystems={props.subsystems} />
+      <Catalog parts={parts} subsystems={props.subsystems} />
     </Container>
   );
 }
 
-function PartEditPage() {
+function PartEditPage(props) {
   return (
     <Container>
-      <PartEdit />
+      <PartEdit subsystems={props.subsystems} />
     </Container>
   );
 }
