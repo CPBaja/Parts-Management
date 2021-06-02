@@ -8,6 +8,29 @@ This repository contains the Parts Management software for Cal Poly's Baja SAE t
 
 Click [here](https://app.diagrams.net/#G1WEWmdwzENLEppVEkaEy2EwxNCejGHRiK) to view the UI prototype.
 
+## Development Environment Setup
+
+Follow these steps to set up the development environment.
+
+1. Clone this repository.
+2. Install node.js from this [link](https://nodejs.org/en/download/).
+   We do not use node.js but we do use npm (node package manager).
+3. In the frontend directory, run the following command to install frontend dependencies:
+
+   `npm install`
+
+4. In the backend directory, run the following command to install backend dependencies:
+
+   `pip install -r requirements.txt`
+
+5. In the backend directory, add the `.env` file to access the database.
+   Retrieve this file from a team member who maintains this code.
+
+For more detailed instructions, see the backend and frontend readme files.
+
+- Click [here](https://github.com/CPBaja/Parts-Management/tree/main/backend) to view the backend source and readme file.
+- Click [here](https://github.com/CPBaja/Parts-Management/tree/main/frontend) to view the frontend source and readme file.
+
 ## Style Checking
 
 ### PyCodeStyle and PyLint for Python
