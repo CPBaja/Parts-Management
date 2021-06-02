@@ -3,3 +3,4 @@
 
 # Do not include local IntelliJ files
 .idea/
+backend/src/.coverage

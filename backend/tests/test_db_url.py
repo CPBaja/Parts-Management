@@ -8,7 +8,7 @@ load_dotenv()
 MONGODB_URL = os.getenv("MONGODB_URL")
 
 client = pymongo.MongoClient(MONGODB_URL)
-collection = client.parts.test
+collection = client.test.url
 
 for i in range(10):
     print(f"Adding {i}")
