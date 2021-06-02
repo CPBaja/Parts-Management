@@ -44,7 +44,11 @@ function PartEdit(props) {
     }
 
     if (event.target.type === "number") {
-      value = parseInt(event.target.value);
+      if (name === "vendor_cost") {
+        value = parseFloat(event.target.value);
+      } else {
+        value = parseInt(event.target.value);
+      }
     }
 
     setPart({ ...part, [name]: value });
@@ -74,6 +78,7 @@ function PartEdit(props) {
               <p>{part.subsystem}</p>
             </Col>
           </Form.Group>
+
           <Form.Group as={Row}>
             <Form.Label column sm={2}>
               Subassembly
@@ -89,6 +94,7 @@ function PartEdit(props) {
               />
             </Col>
           </Form.Group>
+
           <Form.Group as={Row}>
             <Form.Label column sm={2}>
               Part Name
@@ -164,7 +170,7 @@ function PartEdit(props) {
                   <Form.Group>
                     <Form.Label>Available</Form.Label>
                     <Form.Control
-                      className="catalog-entry__number catalog-entry__number--available"
+                      className="full-edit__number full-edit__number--available"
                       type="number"
                       name="quantity_available"
                       defaultValue={part.quantity_available}
@@ -175,6 +181,46 @@ function PartEdit(props) {
               </Row>
             </Col>
           </Form.Group>
+
+          <Form.Group className="mt-2" as={Row}>
+            <Form.Label column sm={2}>
+              Vendor
+            </Form.Label>
+            <Col>
+              <Row>
+                <Col sm={8}>
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control
+                    className="full-edit__vendor_name"
+                    name="vendor"
+                    defaultValue={part.vendor}
+                    onChange={handleChange}
+                  />
+                </Col>
+                <Col sm={4}>
+                  <Form.Label>Cost</Form.Label>
+                  <Form.Control
+                    className="full-edit__vendor"
+                    type="number"
+                    step="0.01"
+                    name="vendor_cost"
+                    defaultValue={part.vendor_cost}
+                    onChange={handleChange}
+                  />
+                </Col>
+                <Col sm={8}>
+                  <Form.Label>Link</Form.Label>
+                  <Form.Control
+                    className="full-edit__vendor_link"
+                    name="vendor_link"
+                    defaultValue={part.vendor_link}
+                    onChange={handleChange}
+                  />
+                </Col>
+              </Row>
+            </Col>
+          </Form.Group>
+
           <Button
             className="full-edit__save"
             onClick={() => {
