@@ -7,13 +7,13 @@ Initially started as a class project for CSC 307, this application functions as 
 
 Below is a UML Use Case diagram representing major project functions.  `<<extend>>` relationships imply that there is some added functionality to a use case and `<<include>>` relationships show what use cases must execute in order for the functionality to operate.
 
-![Image](src)
+![Image](UseCaseDiagram.png)
 
 ### Class Diagram
 
 Below is a UML Class diagram of the backend 
 
-![Image](src)
+![Image](ClassDiagram.png)
 
 ### Project Status
 
