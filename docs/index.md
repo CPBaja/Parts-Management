@@ -1,37 +1,30 @@
-## Welcome to GitHub Pages
+# Cal Poly Racing Parts Management
+## BOM 3: Electric Jubilee
 
-You can use the [editor on GitHub](https://github.com/CPBaja/Parts-Management/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+Initially started as a class project for CSC 307, this application functions as an inventory catalog, reciept tracker, routing planner, and build status tracker.  Based on the CPR, Baja BOM 2: Electric Boogaloo (implemented as linked Google Sheets with some added automation), this project aims to centralize all of the team inventory management and make it simple enough that team leads actually lookk forward to using it.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Use Case Diagram
 
-### Markdown
+Below is a UML Use Case diagram representing major project functions.  `<<extend>>` relationships imply that there is some added functionality to a use case and `<<include>>` relationships show what use cases must execute in order for the functionality to operate.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+![Image](src)
 
-```markdown
-Syntax highlighted code block
+### Class Diagram
 
-# Header 1
-## Header 2
-### Header 3
+Below is a UML Class diagram of the backend 
 
-- Bulleted
-- List
+![Image](src)
 
-1. Numbered
-2. List
+### Project Status
 
-**Bold** and _Italic_ and `Code` text
+This projet is currently in the Alpha phase!  This means that we are still developing new core features and it won't be uncommon to see major changes in functionality and code.
+We would love to hear your input!  If you have any suggestions on improvements please fill out this form.
 
-[Link](url) and ![Image](src)
-```
+### Details
+This page was developed using Gihub Markdown.
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/CPBaja/Parts-Management/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+### Acknowledgements
+This project originally developed by:
+- Tyler Olson [@Rockjack00](https://github.com/Rockjack00)
+- Rahul Goyal [@rahul-go](https://github.com/rahul-go)
+- Ian Gallagher [@iangallagherm](https://github.com/iangallagherm)
